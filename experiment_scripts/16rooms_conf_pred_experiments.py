@@ -62,7 +62,7 @@ for e in es:
 json_data = json.dumps(data_cum_reward, indent=2)
 
 # Store the JSON string in a file
-with open("experiments_data/16rooms-spec13-dirl-cum-safety-reach-reward.json", "w") as json_file:
+with open("experiments_data/16rooms-spec13-dirl-cum-reward.json", "w") as json_file:
     json_file.write(json_data)
 
 with open("experiments_data/16rooms-dirl-policies/16rooms-spec13-cum-rew-scoregraph.pkl", "wb") as f:
