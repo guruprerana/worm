@@ -1,0 +1,82 @@
+{
+  "500": {
+    "var-estim": 171.0,
+    "coverage": 0.8954
+  },
+  "1000": {
+    "var-estim": 172.0,
+    "coverage": 0.8982
+  },
+  "1500": {
+    "var-estim": 174.0,
+    "coverage": 0.9043
+  },
+  "2000": {
+    "var-estim": 178.0,
+    "coverage": 0.9128
+  },
+  "2500": {
+    "var-estim": 178.0,
+    "coverage": 0.9132
+  },
+  "3000": {
+    "var-estim": 177.0,
+    "coverage": 0.9098
+  },
+  "3500": {
+    "var-estim": 175.0,
+    "coverage": 0.9048
+  },
+  "4000": {
+    "var-estim": 176.0,
+    "coverage": 0.909
+  },
+  "4500": {
+    "var-estim": 175.0,
+    "coverage": 0.907
+  },
+  "5000": {
+    "var-estim": 175.0,
+    "coverage": 0.907
+  },
+  "5500": {
+    "var-estim": 176.0,
+    "coverage": 0.909
+  },
+  "6000": {
+    "var-estim": 175.0,
+    "coverage": 0.907
+  },
+  "6500": {
+    "var-estim": 175.0,
+    "coverage": 0.907
+  },
+  "7000": {
+    "var-estim": 175.0,
+    "coverage": 0.907
+  },
+  "7500": {
+    "var-estim": 176.0,
+    "coverage": 0.9093
+  },
+  "8000": {
+    "var-estim": 175.0,
+    "coverage": 0.907
+  },
+  "8500": {
+    "var-estim": 175.0,
+    "coverage": 0.907
+  },
+  "9000": {
+    "var-estim": 175.0,
+    "coverage": 0.907
+  },
+  "9500": {
+    "var-estim": 176.0,
+    "coverage": 0.909
+  },
+  "10000": {
+    "var-estim": 176.0,
+    "coverage": 0.909
+  }
+}

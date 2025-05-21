@@ -1,0 +1,7 @@
+# git ignore file
+
+arxiv
+cdc 2023
+code/firstExample
+code/runExpCompareMaxRelaxation.py
+code/images/exp1

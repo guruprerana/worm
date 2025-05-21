@@ -1,0 +1,38 @@
+{
+  "5": {
+    "var-estim": 180.0,
+    "coverage": 0.9109
+  },
+  "10": {
+    "var-estim": 180.0,
+    "coverage": 0.9109
+  },
+  "20": {
+    "var-estim": 177.0,
+    "coverage": 0.9107
+  },
+  "30": {
+    "var-estim": 177.0,
+    "coverage": 0.9098
+  },
+  "40": {
+    "var-estim": 177.0,
+    "coverage": 0.9107
+  },
+  "50": {
+    "var-estim": 176.0,
+    "coverage": 0.909
+  },
+  "60": {
+    "var-estim": 177.0,
+    "coverage": 0.9098
+  },
+  "70": {
+    "var-estim": 176.0,
+    "coverage": 0.909
+  },
+  "100": {
+    "var-estim": 176.0,
+    "coverage": 0.909
+  }
+}
