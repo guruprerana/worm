@@ -12,11 +12,11 @@ import wandb
 from wandb.integration.sb3 import WandbCallback
 import pickle
 
-from conformal.nonconformity_score_graph import NonConformityScoreGraph
-from conformal.video_recorder_callback import VideoRecorderCallback
+from agents.agent_graph import AgentGraph
+from agents.video_recorder_callback import VideoRecorderCallback
 
 
-class RLTaskGraph(NonConformityScoreGraph):
+class RLAgentGraph(AgentGraph):
     def __init__(
             self, 
             spec_graph: List[Dict[int, str]], 

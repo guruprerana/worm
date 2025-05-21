@@ -5,9 +5,9 @@ import math  # Added for sqrt
 from scipy.stats import beta  # Added for Clopper-Pearson interval
 
 # Define file paths
-# Assumes 'conformal_experiments_data' is a subdirectory in the CWD or an accessible path
+# Assumes 'experiments_data' is a subdirectory in the CWD or an accessible path
 # and the output image will be saved in the CWD.
-BASE_DATA_DIR = "conformal_experiments_data"
+BASE_DATA_DIR = "experiments_data"
 FILE1_NAME = "fetch-sample-size.json"
 FILE2_NAME = "16rooms-spec13-dirl-sample-size.json"
 FILE3_NAME = "boxrelay-sample-size.json"  # New file

@@ -1,15 +1,15 @@
 from typing import List, Tuple
 import numpy as np
 from tqdm import tqdm
-from agents.nonconformity_score_graph import NonConformityScoreGraph
+from agents.agent_graph import AgentGraph
 from dirl.spectrl.hierarchy.path_policies import PathPolicy
 from dirl.spectrl.hierarchy.reachability import ReachabilityEnv
 from dirl.spectrl.util.rl import get_rollout
 
 
-class DIRLNonConformityScoreGraph(NonConformityScoreGraph):
+class DIRLAgentGraph(AgentGraph):
     """
-    Non-conformity score graphs for DIRL policies
+    Agent graphs for DIRL policies
     """
 
     def __init__(self, adj_lists: List[List[int]], path_policies: PathPolicy) -> None:
@@ -49,9 +49,9 @@ class DIRLNonConformityScoreGraph(NonConformityScoreGraph):
         raise NotImplementedError
 
 
-class DIRLTimeTakenScoreGraph(DIRLNonConformityScoreGraph):
+class DIRLTimeTakenAgentGraph(DIRLAgentGraph):
     """
-    Non-conformity scores corresponding to time taken to complete reach objective.
+    Agent graph with loss corresponding to time taken to complete reach objective.
     """
 
     def __init__(self, adj_lists: List[List[int]], path_policies: PathPolicy) -> None:
@@ -64,9 +64,9 @@ class DIRLTimeTakenScoreGraph(DIRLNonConformityScoreGraph):
         return len(sarss)
     
 
-class DIRLCumRewardScoreGraph(DIRLNonConformityScoreGraph):
+class DIRLCumRewardAgentGraph(DIRLAgentGraph):
     """
-    Non-conformity scores corresponding to cumulative reward achieved.
+    Agent graph with loss corresponding to cumulative reward achieved.
     """
 
     def __init__(self, adj_lists: List[List[int]], path_policies: PathPolicy, cum_reward_type="normal") -> None:
@@ -82,7 +82,7 @@ class DIRLCumRewardScoreGraph(DIRLNonConformityScoreGraph):
         return -env.cum_reward(states)
     
 
-class DIRLRepeatedScoreGraph(DIRLCumRewardScoreGraph):
+class DIRLRepeatedAgentGraph(DIRLCumRewardAgentGraph):
     def __init__(self, path_policies: PathPolicy, path: List[int], n_repeats: int, cum_reward_type="normal"):
         self.path = path
         self.n_repeats = n_repeats

@@ -1,31 +1,31 @@
 from typing import List, Tuple
 import numpy as np
 
-from conformal.nonconformity_score_graph import NonConformityScoreGraph
-from conformal.utils import get_conformal_quantile_index, get_dkw_quantile_index
+from agents.agent_graph import AgentGraph
+from agents.utils import get_quantile_index, get_dkw_quantile_index
 
 
-def all_paths_conformal_pred(
-    score_graph: NonConformityScoreGraph, 
+def baseline_var_estim(
+    score_graph: AgentGraph, 
     e: float, 
     n_samples: int, 
     delta: float=0.05,
     quantile_eval: str="normal",
 ) -> Tuple[Tuple[int], List[float]]:
     """
-    Naive conformal prediction algorithm on the non-confirmity score graph
+    Naive var estimation algorithm on the agent graph
     that first builds n_samples traces over all paths in the graph
-    to reach the terminal vertex and then runs split conformal prediction 
+    to reach the terminal vertex and then runs quantile estimation 
     on each path.
 
     Inputs:
-        score_graph : NonConformityScoreGraph
+        score_graph : AgentGraph
         e : float (non-coverage rate)
         n_samples : int (number of sample traces to estimate quantile from along each path)
         delta : float (confidence-level)
 
     Outputs:
-        min_path : Tuple[int] (the path that achieves the minimum bound on the non-conformity score)
+        min_path : Tuple[int] (the path that achieves the minimum bound on the losses)
         min_path_scores : List[float] (the ~(1-e)th quantile of the minimum scores of the samples along this path)
     """
     path_samples: dict[Tuple[int], list] = dict()
@@ -67,7 +67,7 @@ def all_paths_conformal_pred(
 
         score_maxes = sorted(score_maxes, key=lambda t: t[0])
         if quantile_eval == "normal":
-            quantile_index = get_conformal_quantile_index(n_samples, e)
+            quantile_index = get_quantile_index(n_samples, e)
         else:
             quantile_index = get_dkw_quantile_index(n_samples, e, delta_bar)
         max_score, scores = score_maxes[quantile_index]

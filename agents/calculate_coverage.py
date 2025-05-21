@@ -1,15 +1,15 @@
 from typing import List
-from conformal.nonconformity_score_graph import NonConformityScoreGraph
+from agents.agent_graph import AgentGraph
 
 
 def calculate_coverage(
-        score_graph: NonConformityScoreGraph, 
+        score_graph: AgentGraph, 
         path: List[int], 
         path_score_bounds: List[float],
         n_samples: int,
     ) -> float:
     """
-    Calculates empirical coverage of conformal score bounds given by path_score_bounds
+    Calculates empirical coverage of loss bounds given by path_score_bounds
     on samples drawn along path from the score_graph
     """
     # assert len(path_score_bounds) == (len(path) - 1s)

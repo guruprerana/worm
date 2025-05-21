@@ -129,12 +129,12 @@ terminal_vertices = [i for i in range(len(adj_list)) if i in adj_list[i]]
 
 import dill as pickle
 
-with open("conformal_experiments_data/car2d-policies/path_policies.pkl", "wb") as f:
+with open("experiments_data/car2d-policies/path_policies.pkl", "wb") as f:
     pickle.dump(path_policies, f)
 
-with open("conformal_experiments_data/car2d-policies/adj_list.pkl", "wb") as f:
+with open("experiments_data/car2d-policies/adj_list.pkl", "wb") as f:
     pickle.dump(adj_list, f)
 
-with open("conformal_experiments_data/car2d-policies/terminal_vertices.pkl", "wb") as f:
+with open("experiments_data/car2d-policies/terminal_vertices.pkl", "wb") as f:
     pickle.dump(terminal_vertices, f)
 

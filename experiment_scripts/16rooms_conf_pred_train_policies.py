@@ -2,9 +2,9 @@ num_iters = 1200
 env_num = 3
 spec_num = 13
 
-from conformal.all_paths_conformal_pred import all_paths_conformal_pred
-from conformal.bucketed_conformal_pred import bucketed_conformal_pred
-from conformal.dirl_score_graphs import DIRLCumRewardScoreGraph, DIRLTimeTakenScoreGraph
+from agents.baseline_var_estim import baseline_var_estim
+from agents.bucketed_var import bucketed_var
+from agents.dirl_agent_graphs import DIRLCumRewardAgentGraph, DIRLTimeTakenAgentGraph
 from spectrl.hierarchy.construction import adj_list_from_task_graph, automaton_graph_from_spec
 from spectrl.hierarchy.reachability import HierarchicalPolicy, ConstrainedEnv
 from spectrl.main.spec_compiler import ev, seq, choose, alw
@@ -105,11 +105,11 @@ terminal_vertices = [i for i in range(len(adj_list)) if i in adj_list[i]]
 
 import dill as pickle
 
-with open("conformal_experiments_data/16rooms-dirl-policies/path_policies.pkl", "wb") as f:
+with open("experiments_data/16rooms-dirl-policies/path_policies.pkl", "wb") as f:
     pickle.dump(path_policies, f)
 
-with open("conformal_experiments_data/16rooms-dirl-policies/adj_list.pkl", "wb") as f:
+with open("experiments_data/16rooms-dirl-policies/adj_list.pkl", "wb") as f:
     pickle.dump(adj_list, f)
 
-with open("conformal_experiments_data/16rooms-dirl-policies/terminal_vertices.pkl", "wb") as f:
+with open("experiments_data/16rooms-dirl-policies/terminal_vertices.pkl", "wb") as f:
     pickle.dump(terminal_vertices, f)

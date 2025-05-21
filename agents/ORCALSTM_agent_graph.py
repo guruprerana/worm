@@ -1,11 +1,11 @@
 import math
 from typing import List
-from conformal.nonconformity_score_graph import NonConformityScoreGraph
+from agents.agent_graph import AgentGraph
 
 
-class ORCALSTMNonConformityScoreGraph(NonConformityScoreGraph):
+class ORCALSTMAgentGraph(AgentGraph):
     """
-    Non-conformity score graph for the ORCA pedestrian simulator
+    Agent graph for the ORCA pedestrian simulator
     with LSTM network dataset
     """
 

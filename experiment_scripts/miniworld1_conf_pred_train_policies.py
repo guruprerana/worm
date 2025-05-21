@@ -1,6 +1,6 @@
-import conformal.miniworld
-from conformal.miniworld import RiskyMiniworldEnv1
-from conformal.rl_task_graph import RLTaskGraph
+import agents.miniworld
+from agents.miniworld import RiskyMiniworldEnv1
+from agents.rl_agent_graph import RLAgentGraph
 
 # spec_graph = [
 #     {
@@ -37,5 +37,5 @@ wandb_project_name = "riskyminiworldenv1-topview"
 
 env_kwargs = {"view": "top"}
 
-task_graph = RLTaskGraph(spec_graph, "RiskyMiniworldEnv1-v0", env_kwargs=env_kwargs, eval_env_kwargs=env_kwargs)
+task_graph = RLAgentGraph(spec_graph, "RiskyMiniworldEnv1-v0", env_kwargs=env_kwargs, eval_env_kwargs=env_kwargs)
 task_graph.train_all_paths(wandb_project_name, 200, 300_000)

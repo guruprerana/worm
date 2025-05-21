@@ -5,7 +5,7 @@ import math
 from scipy.stats import beta
 
 # Define file paths
-BASE_DATA_DIR = "conformal_experiments_data"
+BASE_DATA_DIR = "experiments_data"
 FILE1_NAME = "fetch-buckets.json"  # Changed
 FILE2_NAME = "16rooms-spec13-dirl-buckets.json"  # Changed
 FILE3_NAME = "boxrelay-buckets.json"  # Changed

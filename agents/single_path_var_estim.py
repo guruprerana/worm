@@ -1,10 +1,10 @@
 from typing import List
-from conformal.nonconformity_score_graph import NonConformityScoreGraph
-from conformal.utils import get_conformal_quantile_index, get_dkw_quantile_index
+from agents.agent_graph import AgentGraph
+from agents.utils import get_quantile_index, get_dkw_quantile_index
 
 
 def single_path_var_estim(
-    score_graph: NonConformityScoreGraph, 
+    score_graph: AgentGraph, 
     path: List[int],
     e: float, 
     n_samples: int, 
@@ -22,7 +22,7 @@ def single_path_var_estim(
 
     trajectories_scores = sorted(max(scores) for scores in trajectories_scores)
     if quantile_eval == "normal":
-        quantile_index = get_conformal_quantile_index(n_samples, e)
+        quantile_index = get_quantile_index(n_samples, e)
     else:
         quantile_index = get_dkw_quantile_index(n_samples, e, delta)
 

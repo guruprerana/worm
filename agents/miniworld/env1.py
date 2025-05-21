@@ -1,7 +1,7 @@
 from enum import Enum
 import numpy as np
 from gymnasium import spaces
-from conformal.miniworld.riskyminiworld import RiskyMiniworld
+from agents.miniworld.riskyminiworld import RiskyMiniworld
 
 
 class RiskyMiniworldEnv1(RiskyMiniworld):

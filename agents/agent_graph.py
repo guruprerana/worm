@@ -3,11 +3,11 @@ from typing import Dict, List, Tuple
 import pickle
 
 
-class NonConformityScoreGraph:
+class AgentGraph:
     """
-    Base class representing the non-conformity score graph.
+    Base class representing the agent graph.
     Allows sampling from distributions and evaluating the
-    non-conformity scores.
+    loss functions.
     """
 
     def __init__(self, adj_lists: List[List[int]], cache_save_file: str=None) -> None:
@@ -36,7 +36,7 @@ class NonConformityScoreGraph:
         Samples from the distribution induced on an edge by a path, i.e.,
         extends the path samples until the target_vertex.
 
-        Also evaluates the non-conformity score on the samples.
+        Also evaluates the loss on the samples.
         """
         raise NotImplementedError
     
@@ -68,7 +68,7 @@ class NonConformityScoreGraph:
         n_samples: int,
     ) -> List[List[float]]:
         """
-        Samples n_samples trajectories of non-conformity scores along specified path
+        Samples n_samples trajectories of losses along specified path
         """
         trajectories_scores = [[] for _ in range(n_samples)]
         prev_samples = [None for _ in range(n_samples)]

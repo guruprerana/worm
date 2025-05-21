@@ -1,8 +1,8 @@
 from typing import Dict, List, Tuple
 import numpy as np
 
-from conformal.nonconformity_score_graph import NonConformityScoreGraph
-from conformal.utils import get_conformal_quantile_index, get_dkw_quantile_index
+from agents.agent_graph import AgentGraph
+from agents.utils import get_quantile_index, get_dkw_quantile_index
 
 
 class VertexBucket:
@@ -48,18 +48,18 @@ class VertexBuckets:
         self.buckets: Dict[Tuple[int, int], VertexBucket] = dict()
 
 
-def bucketed_conformal_pred(
-    score_graph: NonConformityScoreGraph, 
+def bucketed_var(
+    score_graph: AgentGraph, 
     e: float, total_buckets: int, 
     n_samples: int, 
     delta: float=0.95,
     quantile_eval: str="normal",
 ) -> VertexBuckets:
     """
-    DP implementation of the bucketed conformal prediction algorithm.
+    DP implementation of the bucketed var algorithm.
 
     Params :
-    score_graph : NonConformityScoreGraph
+    score_graph : AgentGraph
     e : float (the error/confidence parameter)
     total_buckets : int (total number of buckets for dividing the error parameter)
     n_samples : int (number of samples to draw along each edge to estimate the quantile)
@@ -95,7 +95,7 @@ def bucketed_conformal_pred(
                         scores = sorted(scores)
                         rem_e = (bucket - bucket_pred) * (e / total_buckets)
                         if quantile_eval == "normal":
-                            quantile_index = get_conformal_quantile_index(n_samples, rem_e)
+                            quantile_index = get_quantile_index(n_samples, rem_e)
                         else:
                             quantile_index = get_dkw_quantile_index(n_samples, rem_e, delta_bar)
 

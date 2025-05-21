@@ -34,8 +34,8 @@ def clopper_pearson_interval(observed_successes, total_trials, alpha=0.05):
     return (lower, upper)
 
 def create_plot():
-    json_file_path = 'conformal_experiments_data/16rooms-repeated-data-additional.json'
-    plot_output_path = 'conformal_experiments_data/plots/16rooms_repeated.png'
+    json_file_path = 'experiments_data/16rooms-repeated-data-additional.json'
+    plot_output_path = 'experiments_data/plots/16rooms_repeated.png'
     
     # User-defined: Total number of trials for baseline coverage.
     # This value is crucial for calculating meaningful confidence intervals for the baseline.

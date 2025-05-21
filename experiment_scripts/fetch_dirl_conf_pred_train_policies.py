@@ -6,27 +6,14 @@ use_gpu = True
 from dotenv import load_dotenv
 load_dotenv()
 
-from conformal.all_paths_conformal_pred import all_paths_conformal_pred
-from conformal.bucketed_conformal_pred import bucketed_conformal_pred
-from conformal.nonconformity_score_graph import DIRLCumRewardScoreGraph, DIRLTimeTakenScoreGraph
 from spectrl.hierarchy.construction import adj_list_from_task_graph, automaton_graph_from_spec
-from spectrl.hierarchy.reachability import HierarchicalPolicy, ConstrainedEnv
-from spectrl.main.spec_compiler import ev, seq, choose, alw
-from spectrl.util.io import parse_command_line_options, save_log_info, save_object
-from spectrl.util.rl import print_performance, get_rollout, ObservationWrapper
-from spectrl.rl.ars import HyperParams
+from spectrl.main.spec_compiler import ev, seq, choose
+from spectrl.util.rl import ObservationWrapper
 from spectrl.rl.ddpg import DDPGParams
 from spectrl.envs.fetch import FetchPickAndPlaceEnv
 import numpy as np
 from numpy import linalg as LA
 
-from spectrl.examples.rooms_envs import (
-    GRID_PARAMS_LIST,
-    MAX_TIMESTEPS,
-    START_ROOM,
-    FINAL_ROOM,
-)
-from spectrl.envs.rooms import RoomsEnv
 
 render = False
 folder = ''
@@ -139,12 +126,12 @@ terminal_vertices = [i for i in range(len(adj_list)) if i in adj_list[i]]
 
 import dill as pickle
 
-with open("conformal_experiments_data/fetch-policies/path_policies.pkl", "wb") as f:
+with open("experiments_data/fetch-policies/path_policies.pkl", "wb") as f:
     pickle.dump(path_policies, f)
 
-with open("conformal_experiments_data/fetch-policies/adj_list.pkl", "wb") as f:
+with open("experiments_data/fetch-policies/adj_list.pkl", "wb") as f:
     pickle.dump(adj_list, f)
 
-with open("conformal_experiments_data/fetch-policies/terminal_vertices.pkl", "wb") as f:
+with open("experiments_data/fetch-policies/terminal_vertices.pkl", "wb") as f:
     pickle.dump(terminal_vertices, f)
 

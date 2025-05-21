@@ -1,18 +1,18 @@
 import json
-from conformal.all_paths_conformal_pred import all_paths_conformal_pred
-from conformal.bucketed_conformal_pred import bucketed_conformal_pred
-from conformal.calculate_coverage import calculate_coverage
-import conformal.miniworld
+from agents.baseline_var_estim import baseline_var_estim
+from agents.bucketed_var import bucketed_var
+from agents.calculate_coverage import calculate_coverage
+import agents.miniworld
 import gymnasium as gym
 import numpy as np
-from conformal.miniworld.boxrelay import spec_graph, BoxRelay
-from conformal.rl_task_graph import RLTaskGraph
+from agents.miniworld.boxrelay import spec_graph, BoxRelay
+from agents.rl_agent_graph import RLAgentGraph
 from PIL import Image
 
 wandb_project_name = "boxrelayenv-agentview"
 env_kwargs = {"view": "agent"}
 cache_save_file = "logs/boxrelayenv-agentview/sample_caches.pkl"
-task_graph = RLTaskGraph(spec_graph, "BoxRelay-v0", env_kwargs=env_kwargs, eval_env_kwargs=env_kwargs, cache_save_file=cache_save_file)
+task_graph = RLAgentGraph(spec_graph, "BoxRelay-v0", env_kwargs=env_kwargs, eval_env_kwargs=env_kwargs, cache_save_file=cache_save_file)
 
 def train():
     # task_graph.train_all_edges(wandb_project_name, training_iters=500_000, final_policy_recordings=3, n_envs=1)
@@ -31,7 +31,7 @@ def risk_min():
 
     for e in es:
         e_data = dict()
-        min_path, min_path_scores = all_paths_conformal_pred(task_graph, e, n_samples, quantile_eval="conformal")
+        min_path, min_path_scores = baseline_var_estim(task_graph, e, n_samples, quantile_eval="conformal")
         all_paths_coverage = calculate_coverage(
             task_graph, 
             min_path, 
@@ -40,7 +40,7 @@ def risk_min():
         )
         for buckets in total_buckets:
             bucket_data = dict()
-            vbs = bucketed_conformal_pred(task_graph, e, buckets, n_samples, quantile_eval="conformal")
+            vbs = bucketed_var(task_graph, e, buckets, n_samples, quantile_eval="conformal")
             vb = vbs.buckets[(5, buckets)]
 
             bucket_data["bucketed"] = {"path": vb.path, 
@@ -60,7 +60,7 @@ def risk_min():
     json_data = json.dumps(data, indent=2)
 
     # Store the JSON string in a file
-    with open("conformal_experiments_data/boxrelay-time-taken.json", "w") as json_file:
+    with open("experiments_data/boxrelay-time-taken.json", "w") as json_file:
         json_file.write(json_data)
 
 def sample_size_buckets_experiment():
@@ -71,11 +71,11 @@ def sample_size_buckets_experiment():
     e = 0.1
     total_buckets = 100
 
-    min_path, min_path_scores = all_paths_conformal_pred(task_graph, e, 10000)
+    min_path, min_path_scores = baseline_var_estim(task_graph, e, 10000)
 
     data = {}
     for n in n_samples:
-        vbs = bucketed_conformal_pred(task_graph, e, total_buckets, n)
+        vbs = bucketed_var(task_graph, e, total_buckets, n)
         vb = vbs.buckets[(5, total_buckets)]
         coverage = calculate_coverage(
             task_graph, 
@@ -92,7 +92,7 @@ def sample_size_buckets_experiment():
     json_data = json.dumps(data, indent=2)
 
     # Store the JSON string in a file
-    with open("conformal_experiments_data/boxrelay-sample-size.json", "w") as json_file:
+    with open("experiments_data/boxrelay-sample-size.json", "w") as json_file:
         json_file.write(json_data)
 
     n_samples = 10000
@@ -100,11 +100,11 @@ def sample_size_buckets_experiment():
     e = 0.1
     total_buckets = [5, 10, 20, 30, 40, 50, 60, 70, 100]
 
-    min_path, min_path_scores = all_paths_conformal_pred(task_graph, e, 10000)
+    min_path, min_path_scores = baseline_var_estim(task_graph, e, 10000)
 
     data = {}
     for buckets in total_buckets:
-        vbs = bucketed_conformal_pred(task_graph, e, buckets, n_samples)
+        vbs = bucketed_var(task_graph, e, buckets, n_samples)
         vb = vbs.buckets[(5, buckets)]
         coverage = calculate_coverage(
             task_graph, 
@@ -121,7 +121,7 @@ def sample_size_buckets_experiment():
     json_data = json.dumps(data, indent=2)
 
     # Store the JSON string in a file
-    with open("conformal_experiments_data/boxrelay-buckets.json", "w") as json_file:
+    with open("experiments_data/boxrelay-buckets.json", "w") as json_file:
         json_file.write(json_data)
 
 
@@ -131,7 +131,7 @@ def generate_screenshots():
 
     frame = env.render()
     img = Image.fromarray(frame)
-    img.save("conformal_experiments_data/boxrelay/boxrelay_topview.png")
+    img.save("experiments_data/boxrelay/boxrelay_topview.png")
 
 if __name__ == "__main__":
     sample_size_buckets_experiment()
