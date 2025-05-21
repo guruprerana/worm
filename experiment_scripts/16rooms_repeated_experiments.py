@@ -68,7 +68,7 @@ for i in range(1, 6):
 json_data = json.dumps(data, indent=2)
 
 # Store the JSON string in a file
-with open("experiments_data/16rooms-repeated-data-additional.json", "w") as json_file:
+with open("experiments_data/16rooms-repeated-data.json", "w") as json_file:
     json_file.write(json_data)
 
 with open("experiments_data/16rooms-repeated/16rooms-spec13-cum-rew-scoregraph.pkl", "wb") as f:
