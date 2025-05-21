@@ -1,4 +1,5 @@
 import json
+import argparse
 from agents.baseline_var_estim import baseline_var_estim
 from agents.bucketed_var import bucketed_var
 from agents.calculate_coverage import calculate_coverage
@@ -133,5 +134,20 @@ def generate_screenshots():
     img = Image.fromarray(frame)
     img.save("experiments_data/boxrelay/boxrelay_topview.png")
 
+def parse_args():
+    parser = argparse.ArgumentParser(description='Run BoxRelay benchmarks and experiments')
+    parser.add_argument('function', type=str, choices=['train', 'risk_min', 'sample_size_buckets_experiment', 'generate_screenshots'],
+                        help='Function to run: train, risk_min, sample_size_buckets_experiment, or generate_screenshots')
+    return parser.parse_args()
+
 if __name__ == "__main__":
-    sample_size_buckets_experiment()
+    args = parse_args()
+    
+    if args.function == 'train':
+        train()
+    elif args.function == 'risk_min':
+        risk_min()
+    elif args.function == 'sample_size_buckets_experiment':
+        sample_size_buckets_experiment()
+    elif args.function == 'generate_screenshots':
+        generate_screenshots()
