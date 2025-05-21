@@ -17,13 +17,13 @@ from agents.dirl_agent_graphs import DIRLCumRewardAgentGraph
 import dill as pickle
 import json
 
-with open("experiments_data/9rooms-counterexample-policies/path_policies.pkl", "rb") as f:
+with open("experiments_data/mousenav-policies/path_policies.pkl", "rb") as f:
     path_policies = pickle.load(f)
 
-with open("experiments_data/9rooms-counterexample-policies/adj_list.pkl", "rb") as f:
+with open("experiments_data/mousenav-policies/adj_list.pkl", "rb") as f:
     adj_list = pickle.load(f)
 
-with open("experiments_data/9rooms-counterexample-policies/terminal_vertices.pkl", "rb") as f:
+with open("experiments_data/mousenav-policies/terminal_vertices.pkl", "rb") as f:
     terminal_vertices = pickle.load(f)
 
 cum_reward_score_graph = DIRLCumRewardAgentGraph(adj_list, path_policies, cum_reward_type="cum_safety_reach_reward")
@@ -65,8 +65,8 @@ for e in es:
 json_data = json.dumps(data_cum_reward, indent=2)
 
 # Store the JSON string in a file
-with open("experiments_data/9rooms-counterexample-cum-reward.json", "w") as json_file:
+with open("experiments_data/mousenav-cum-reward.json", "w") as json_file:
     json_file.write(json_data)
 
-with open("experiments_data/9rooms-counterexample-policies/cum-rew-score-graph.pkl", "wb") as f:
+with open("experiments_data/mousenav-policies/cum-rew-score-graph.pkl", "wb") as f:
     pickle.dump(cum_reward_score_graph, f)

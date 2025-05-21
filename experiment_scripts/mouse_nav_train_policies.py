@@ -107,11 +107,11 @@ terminal_vertices = [i for i in range(len(adj_list)) if i in adj_list[i]]
 
 import dill as pickle
 
-with open("experiments_data/9rooms-counterexample-policies/path_policies.pkl", "wb") as f:
+with open("experiments_data/mousenav-policies/path_policies.pkl", "wb") as f:
     pickle.dump(path_policies, f)
 
-with open("experiments_data/9rooms-counterexample-policies/adj_list.pkl", "wb") as f:
+with open("experiments_data/mousenav-policies/adj_list.pkl", "wb") as f:
     pickle.dump(adj_list, f)
 
-with open("experiments_data/9rooms-counterexample-policies/terminal_vertices.pkl", "wb") as f:
+with open("experiments_data/mousenav-policies/terminal_vertices.pkl", "wb") as f:
     pickle.dump(terminal_vertices, f)
