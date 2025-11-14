@@ -1,3 +1,14 @@
+import os
+import sys
+from pathlib import Path
+
+# Add parent directory to Python path for agents module
+sys.path.insert(0, str(Path(__file__).parent.parent))
+
+# Set environment for headless rendering
+os.environ['PYGLET_HEADLESS'] = '1'
+os.environ['MUJOCO_GL'] = 'osmesa'
+
 import json
 import argparse
 from agents.baseline_var_estim import baseline_var_estim

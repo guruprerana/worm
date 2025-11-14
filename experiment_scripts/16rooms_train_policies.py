@@ -1,3 +1,13 @@
+import os
+import sys
+from pathlib import Path
+
+# Add parent directory to Python path for agents module
+root_dir = Path(__file__).parent.parent
+sys.path.insert(0, str(root_dir))
+# Add dirl submodule to Python path for spectrl module
+sys.path.insert(0, str(root_dir / "dirl"))
+
 num_iters = 1200
 env_num = 3
 spec_num = 13

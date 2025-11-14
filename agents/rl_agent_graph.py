@@ -18,8 +18,8 @@ from agents.video_recorder_callback import VideoRecorderCallback
 
 class RLAgentGraph(AgentGraph):
     def __init__(
-            self, 
-            spec_graph: List[Dict[int, str]], 
+            self,
+            spec_graph: List[Dict[int, str]],
             env_name: str,
             env_kwargs: Optional[dict]=None,
             eval_env_kwargs: Optional[dict]=None,
@@ -181,10 +181,12 @@ class RLAgentGraph(AgentGraph):
             model.save(f"./logs/{wandb_project_name}/{edge_task_name}/final_model")
 
         env.close()
-        if path:
-            self.path_policies[tuple(path)] = model
-        else:
-            self.edge_policies[edge] = model
+        # Don't store models in memory during training to save GPU memory
+        # Models are already saved to disk and can be loaded later if needed
+        # if path:
+        #     self.path_policies[tuple(path)] = model
+        # else:
+        #     self.edge_policies[edge] = model
 
         env = make_eval_env()
 
@@ -256,6 +258,11 @@ class RLAgentGraph(AgentGraph):
                 env.close()
         except Exception as e:
             print(f"Warning: Error closing environment: {e}")
+
+        # Clear GPU memory before training next path
+        del model
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
 
         wandb.finish()
 
