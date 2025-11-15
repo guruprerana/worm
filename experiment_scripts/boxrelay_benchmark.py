@@ -19,6 +19,7 @@ import gymnasium as gym
 import numpy as np
 from agents.miniworld.boxrelay import spec_graph, BoxRelay
 from agents.rl_agent_graph import RLAgentGraph
+from agents.rl_agent_graph_correlated_noise import RLAgentGraphCorrelatedNoise
 from PIL import Image
 
 wandb_project_name = "boxrelayenv-agentview"
@@ -137,6 +138,131 @@ def sample_size_buckets_experiment():
         json_file.write(json_data)
 
 
+def correlated_noise_experiment():
+    """
+    Test bucketed variance estimation with correlated Beta-distributed noise.
+
+    Evaluates how the algorithm performs under different correlation levels (rho)
+    and noise magnitudes.
+
+    Uses efficient caching strategy: all noise configurations share the same
+    true samples cache, avoiding redundant environment sampling.
+    """
+    # Load trained policies once
+    task_graph.load_path_policies(subfolder=wandb_project_name)
+
+    # Experiment parameters
+    n_samples = 5000
+    n_samples_coverage = 5000
+    e = 0.1
+    total_buckets = 50
+
+    # Test different correlation levels
+    rho_values = [0.0, 0.3, 0.5, 0.7, 0.9]
+
+    # Test different noise ranges
+    noise_configs = [
+        {"noise_min": 0.0, "noise_max": 10.0, "name": "max-10"},
+        {"noise_min": 0.0, "noise_max": 50.0, "name": "max-50"},
+        {"noise_min": 0.0, "noise_max": 100.0, "name": "max-100"},
+    ]
+
+    data = {
+        "metadata": {
+            "e": e,
+            "total_buckets": total_buckets,
+            "n_samples": n_samples,
+            "n_samples_coverage": n_samples_coverage,
+            "env": "boxrelay",
+            "noise_distribution": "Beta(2, 2)",
+        },
+        "noise_experiments": {}
+    }
+
+    # SHARED cache file for true samples (without noise)
+    # All noise configurations will reuse this cache, so environment sampling happens only once
+    true_samples_cache_file = "logs/boxrelayenv-agentview/sample_caches_true_samples.pkl"
+
+    print(f"\n{'='*60}")
+    print(f"Using shared true samples cache: {true_samples_cache_file}")
+    print(f"Environment sampling will be reused across all noise configurations")
+    print(f"{'='*60}")
+
+    # Test with different noise configurations
+    for noise_config in noise_configs:
+        noise_name = noise_config["name"]
+        noise_min = noise_config["noise_min"]
+        noise_max = noise_config["noise_max"]
+
+        print(f"\n{'='*60}")
+        print(f"Testing noise range: [{noise_min}, {noise_max}] ({noise_name})")
+        print(f"{'='*60}")
+
+        noise_range_data = {}
+
+        for rho in rho_values:
+            print(f"\nTesting ρ={rho}...")
+
+            # Create task graph with correlated noise
+            # Use two-level caching:
+            # 1. true_samples_cache_file: SHARED across all noise configs (expensive environment sampling)
+            # 2. cache_save_file: PER noise config (cheap but still worth caching for re-runs)
+            noisy_samples_cache_file = f"logs/boxrelayenv-agentview/noisy_samples_{noise_name}_rho{rho}.pkl"
+
+            task_graph_noise = RLAgentGraphCorrelatedNoise(
+                spec_graph=spec_graph,
+                env_name="BoxRelay-v0",
+                rho=rho,
+                noise_min=noise_min,
+                noise_max=noise_max,
+                noise_seed=42,
+                env_kwargs=env_kwargs,
+                eval_env_kwargs=env_kwargs,
+                true_samples_cache_file=true_samples_cache_file,  # SHARED across all configs
+                cache_save_file=noisy_samples_cache_file,  # PER config (for re-runs)
+            )
+
+            # Load the same trained policies
+            task_graph_noise.load_path_policies(subfolder=wandb_project_name)
+
+            # Run bucketed variance estimation with noise
+            vbs_noise = bucketed_var(task_graph_noise, e, total_buckets, n_samples, quantile_eval="conformal")
+            vb_noise = vbs_noise.buckets[(5, total_buckets)]
+
+            # Calculate coverage using the noisy task graph
+            coverage_noise = calculate_coverage(
+                task_graph_noise,
+                vb_noise.path,
+                vb_noise.path_score_quantiles,
+                n_samples_coverage,
+            )
+
+            noise_range_data[str(rho)] = {
+                "path": vb_noise.path,
+                "path_buckets": vb_noise.path_buckets,
+                "path_score_quantiles": vb_noise.path_score_quantiles,
+                "max_path_score_quantile": max(vb_noise.path_score_quantiles),
+                "coverage": coverage_noise,
+                "noise_config": task_graph_noise.get_noise_info(),
+            }
+
+            print(f"  Path: {vb_noise.path}")
+            print(f"  Max quantile: {max(vb_noise.path_score_quantiles):.4f}")
+            print(f"  Coverage: {coverage_noise:.4f}")
+
+        data["noise_experiments"][noise_name] = noise_range_data
+
+    # Save results to JSON
+    json_data = json.dumps(data, indent=2)
+    output_file = "experiments_data/boxrelay-correlated-noise.json"
+    with open(output_file, "w") as json_file:
+        json_file.write(json_data)
+
+    print(f"\n{'='*60}")
+    print(f"Results saved to {output_file}")
+    print(f"{'='*60}")
+
+
 def generate_screenshots():
     env = gym.make("BoxRelay-v0", render_mode="rgb_array", view="top", task_str=BoxRelay.Tasks.GOTO_LEFT_HALL_TARGET)
     env.reset()
@@ -147,18 +273,20 @@ def generate_screenshots():
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Run BoxRelay benchmarks and experiments')
-    parser.add_argument('function', type=str, choices=['train', 'risk_min', 'sample_size_buckets_experiment', 'generate_screenshots'],
-                        help='Function to run: train, risk_min, sample_size_buckets_experiment, or generate_screenshots')
+    parser.add_argument('function', type=str, choices=['train', 'risk_min', 'sample_size_buckets_experiment', 'correlated_noise_experiment', 'generate_screenshots'],
+                        help='Function to run: train, risk_min, sample_size_buckets_experiment, correlated_noise_experiment, or generate_screenshots')
     return parser.parse_args()
 
 if __name__ == "__main__":
     args = parse_args()
-    
+
     if args.function == 'train':
         train()
     elif args.function == 'risk_min':
         risk_min()
     elif args.function == 'sample_size_buckets_experiment':
         sample_size_buckets_experiment()
+    elif args.function == 'correlated_noise_experiment':
+        correlated_noise_experiment()
     elif args.function == 'generate_screenshots':
         generate_screenshots()

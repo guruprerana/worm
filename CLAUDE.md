@@ -101,6 +101,9 @@ xvfb-run -a -s "-screen 0 1024x768x24 -ac +extension GLX +render -noreset" pytho
 
 # Sample size and buckets variation
 xvfb-run -a -s "-screen 0 1024x768x24 -ac +extension GLX +render -noreset" python -m experiment_scripts.boxrelay_benchmark sample_size_buckets_experiment
+
+# Correlated noise robustness test
+xvfb-run -a -s "-screen 0 1024x768x24 -ac +extension GLX +render -noreset" python -m experiment_scripts.boxrelay_benchmark correlated_noise_experiment
 ```
 
 ### Generating Plots
@@ -109,6 +112,44 @@ python -m experiment_scripts.sample_size_plot
 python -m experiment_scripts.buckets_plot
 python -m experiment_scripts.16_rooms_repeated_plot
 ```
+
+## Correlated Noise Experiments
+
+The `RLAgentGraphCorrelatedNoise` class (agents/rl_agent_graph_correlated_noise.py) extends `RLAgentGraph` to add controlled correlated noise to losses for robustness testing.
+
+### Noise Characteristics
+- **Distribution**: Beta(2, 2) scaled to [noise_min, noise_max]
+- **Correlation**: Positively correlated across edges along paths using Gaussian copula
+- **Parameters**:
+  - `rho`: Correlation coefficient (0 = uncorrelated, 1 = perfectly correlated)
+  - `noise_min`, `noise_max`: Range bounds for noise
+  - `noise_seed`: For reproducibility
+
+### Using Correlated Noise
+
+```python
+from agents.rl_agent_graph_correlated_noise import RLAgentGraphCorrelatedNoise
+
+# Create agent graph with noise
+task_graph_noise = RLAgentGraphCorrelatedNoise(
+    spec_graph=spec_graph,
+    env_name="BoxRelay-v0",
+    rho=0.7,              # 70% correlation across edges
+    noise_min=-3.0,
+    noise_max=3.0,
+    noise_seed=42,
+)
+
+# Use exactly like RLAgentGraph
+task_graph_noise.load_path_policies(subfolder="boxrelayenv-agentview")
+vbs = bucketed_var(task_graph_noise, e=0.1, total_buckets=50, n_samples=5000)
+```
+
+### BoxRelay Correlated Noise Experiment
+The `correlated_noise_experiment()` function tests algorithm robustness by:
+1. Testing 3 noise magnitudes (small, medium, large)
+2. Testing 5 correlation levels (ρ = 0.0, 0.3, 0.5, 0.7, 0.9)
+3. Saving results to `experiments_data/boxrelay-correlated-noise.json`
 
 ## Important Implementation Details
 
