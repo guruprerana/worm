@@ -1,32 +1,27 @@
 """
-RLAgentGraph subclass that adds controlled positively correlated noise to losses.
+RLAgentGraph subclass that adds correlated uniform noise to losses.
 
-The noise is correlated across edges along a path, allowing testing of algorithm
-robustness to correlated disturbances.
+Noise is a mixture of shared (correlated) and individual (uncorrelated) components,
+controlled by correlation coefficient rho.
 """
 from typing import List, Optional, Dict, Tuple
 import numpy as np
-from scipy import stats
 
 from agents.rl_agent_graph import RLAgentGraph
 
 
 class RLAgentGraphCorrelatedNoise(RLAgentGraph):
     """
-    RLAgentGraph with controlled positively correlated noise added to losses.
+    RLAgentGraph with correlated uniform noise added to losses.
 
     Noise structure:
-    - Noise follows Beta(2, 2) distribution scaled to [noise_min, noise_max]
-    - For each sample i across edges in a path, noise is correlated
-    - Correlation is controlled by rho (ρ ∈ [0, 1])
-
-    Implementation uses Gaussian copula to maintain correlation:
-    1. Generate correlated Gaussian variables: G_{j,i} = √ρ·Z_i + √(1-ρ)·ε_{j,i}
-    2. Transform to uniform [0,1]: U_{j,i} = Φ(G_{j,i}) where Φ is normal CDF
-    3. Transform to Beta(2,2): B_{j,i} = Beta^{-1}(U_{j,i})
-    4. Scale to desired range: N_{j,i} = noise_min + (noise_max - noise_min)·B_{j,i}
-
-    This preserves rank correlation between edges in the same path.
+    - Total noise = rho * shared_noise + (1-rho) * individual_noise
+    - shared_noise ~ Uniform(noise_min, noise_max): same across all edges in path
+    - individual_noise ~ Uniform(noise_min, noise_max): unique per edge
+    - rho ∈ [0, 1] controls correlation:
+      * rho = 1: fully shared (100% correlation across edges)
+      * rho = 0: fully individual (0% correlation)
+      * rho = 0.5: equal mix of shared and individual
     """
 
     def __init__(
@@ -43,13 +38,14 @@ class RLAgentGraphCorrelatedNoise(RLAgentGraph):
         true_samples_cache_file: str = None,
     ):
         """
-        Initialize RLAgentGraph with correlated Beta-distributed noise.
+        Initialize RLAgentGraph with correlated uniform noise.
 
         Args:
             spec_graph: Task graph specification
             env_name: Gymnasium environment name
             rho: Correlation coefficient (0 ≤ ρ ≤ 1).
-                 ρ=0: uncorrelated, ρ=1: perfectly correlated
+                 Controls mix of shared vs individual noise.
+                 ρ=1: fully shared, ρ=0: fully individual
             noise_min: Minimum noise value (lower bound of range)
             noise_max: Maximum noise value (upper bound of range)
             noise_seed: Random seed for noise generation (for reproducibility)
@@ -81,40 +77,35 @@ class RLAgentGraphCorrelatedNoise(RLAgentGraph):
         self.noise_seed = noise_seed
         self.rng = np.random.RandomState(noise_seed)
 
-        # Beta distribution parameters (alpha = beta = 2)
-        self.beta_alpha = 2.0
-        self.beta_beta = 2.0
-
         # Optional separate cache for noisy samples (usually not needed since noise is deterministic)
         self.noisy_samples_cache: Dict[str, Tuple[list, List[float]]] = {}
         self.noisy_cache_save_file = cache_save_file
         if cache_save_file:
             self._load_noisy_cache(cache_save_file)
 
-        print(f"Initialized RLAgentGraphCorrelatedNoise with ρ={rho}, "
-              f"Beta({self.beta_alpha}, {self.beta_beta}), range=[{noise_min}, {noise_max}]")
+        print(f"Initialized RLAgentGraphCorrelatedNoise with:")
+        print(f"  Uniform({noise_min}, {noise_max})")
+        print(f"  ρ={rho} (correlation coefficient)")
+        print(f"  Noise = {rho}*shared + {1-rho}*individual")
         print(f"True samples cache: {true_samples_cache_file}")
         print(f"Noisy samples cache: {cache_save_file if cache_save_file else 'disabled (noise regenerated on-the-fly)'}")
 
-    def _generate_shared_noise(self, path: List[int], n_samples: int) -> np.ndarray:
+    def _generate_shared_noise(self, n_samples: int) -> np.ndarray:
         """
-        Generate shared noise component for a path.
+        Generate shared uniform noise component. Same across all edges for each sample.
 
-        This noise is shared across all edges in the path for each sample,
-        creating correlation across edges.
+        Uses a dedicated RNG seeded consistently so that the shared noise is truly
+        the same for all edges (i.e., sample #0 gets the same shared noise on all edges).
 
         Args:
-            path: The path up to (but not including) the target vertex
             n_samples: Number of samples
 
         Returns:
-            Array of shape (n_samples,) with shared noise ~ N(0, 1)
+            Array of shape (n_samples,) with uniform noise in [noise_min, noise_max]
         """
-        # Create deterministic seed based on path start and noise_seed
-        # This ensures same shared noise for all edges in the same path
-        path_seed = self.noise_seed + hash(tuple(path[:1])) % (2**31)
-        path_rng = np.random.RandomState(path_seed)
-        return path_rng.randn(n_samples)
+        # Use dedicated RNG for shared noise, seeded consistently
+        shared_rng = np.random.RandomState(self.noise_seed)
+        return shared_rng.uniform(self.noise_min, self.noise_max, size=n_samples)
 
     def _generate_edge_noise(
         self,
@@ -123,11 +114,10 @@ class RLAgentGraphCorrelatedNoise(RLAgentGraph):
         n_samples: int
     ) -> np.ndarray:
         """
-        Generate Beta-distributed noise for a specific edge using Gaussian copula.
+        Generate correlated uniform noise for an edge.
 
         Combines shared noise (correlated across edges) and individual noise
-        (uncorrelated) according to the correlation coefficient rho, then
-        transforms to Beta(2, 2) distribution in [noise_min, noise_max].
+        (uncorrelated) according to: noise = rho * shared + (1-rho) * individual
 
         Args:
             path: The path up to (but not including) the target vertex
@@ -135,34 +125,22 @@ class RLAgentGraphCorrelatedNoise(RLAgentGraph):
             n_samples: Number of samples
 
         Returns:
-            Array of shape (n_samples,) with Beta-distributed noise in [noise_min, noise_max]
+            Array of shape (n_samples,) with uniform noise in [noise_min, noise_max]
         """
         # Generate shared noise component (same for all edges in path)
-        shared_noise = self._generate_shared_noise(path, n_samples)
+        shared_noise = self._generate_shared_noise(n_samples)
 
         # Generate individual noise component (unique to this edge)
         # Use edge-specific seed for reproducibility
         edge_seed = self.noise_seed + hash((tuple(path), target_vertex)) % (2**31)
         edge_rng = np.random.RandomState(edge_seed)
-        individual_noise = edge_rng.randn(n_samples)
+        individual_noise = edge_rng.uniform(self.noise_min, self.noise_max, size=n_samples)
 
-        # Step 1: Combine Gaussian noises to create correlation
-        # G = √ρ · Z + √(1-ρ) · ε
-        gaussian_noise = (
-            np.sqrt(self.rho) * shared_noise +
-            np.sqrt(1 - self.rho) * individual_noise
-        )
+        # Combine: rho * shared + (1-rho) * individual
+        # This is a convex combination, so result stays in [noise_min, noise_max]
+        total_noise = self.rho * shared_noise + (1 - self.rho) * individual_noise
 
-        # Step 2: Transform to uniform [0, 1] using normal CDF
-        uniform_noise = stats.norm.cdf(gaussian_noise)
-
-        # Step 3: Transform to Beta(2, 2) using inverse Beta CDF
-        beta_noise = stats.beta.ppf(uniform_noise, self.beta_alpha, self.beta_beta)
-
-        # Step 4: Scale to desired range [noise_min, noise_max]
-        scaled_noise = self.noise_min + (self.noise_max - self.noise_min) * beta_noise
-
-        return scaled_noise
+        return total_noise
 
     def _load_noisy_cache(self, file: str):
         """Load noisy samples cache from file."""
@@ -295,10 +273,9 @@ class RLAgentGraphCorrelatedNoise(RLAgentGraph):
         """
         return {
             "rho": self.rho,
-            "beta_alpha": self.beta_alpha,
-            "beta_beta": self.beta_beta,
             "noise_min": self.noise_min,
             "noise_max": self.noise_max,
             "noise_seed": self.noise_seed,
-            "noise_type": "beta_correlated_edges",
+            "noise_type": "uniform_correlated",
+            "description": f"noise = {self.rho}*shared + {1-self.rho}*individual",
         }

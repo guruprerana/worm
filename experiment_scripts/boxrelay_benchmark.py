@@ -140,10 +140,11 @@ def sample_size_buckets_experiment():
 
 def correlated_noise_experiment():
     """
-    Test bucketed variance estimation with correlated Beta-distributed noise.
+    Test bucketed variance estimation with correlated uniform noise.
 
     Evaluates how the algorithm performs under different correlation levels (rho)
-    and noise magnitudes.
+    and noise magnitudes. Noise model: noise = rho*shared + (1-rho)*individual,
+    where both components are Uniform(noise_min, noise_max).
 
     Uses efficient caching strategy: all noise configurations share the same
     true samples cache, avoiding redundant environment sampling.
@@ -174,7 +175,8 @@ def correlated_noise_experiment():
             "n_samples": n_samples,
             "n_samples_coverage": n_samples_coverage,
             "env": "boxrelay",
-            "noise_distribution": "Beta(2, 2)",
+            "noise_distribution": "Uniform (correlated)",
+            "noise_model": "noise = rho*shared + (1-rho)*individual",
         },
         "noise_experiments": {}
     }
