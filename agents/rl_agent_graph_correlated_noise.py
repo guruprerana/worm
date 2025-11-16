@@ -195,38 +195,6 @@ class RLAgentGraphCorrelatedNoise(RLAgentGraph):
         return (f"{list(path)}_{target_vertex}_{n_samples}_"
                 f"rho{self.rho}_min{self.noise_min}_max{self.noise_max}_seed{self.noise_seed}")
 
-    def sample(self, target_vertex, n_samples, path, path_samples):
-        """
-        Sample from environment and add correlated noise.
-
-        NOTE: This method is typically called via sample_cached(), which handles
-        the caching strategy. Direct calls to this method will not use caching.
-
-        Args:
-            target_vertex: Target vertex to reach
-            n_samples: Number of samples to draw
-            path: Path taken so far
-            path_samples: Samples (states) from previous edge
-
-        Returns:
-            Tuple of (next_path_samples, noisy_losses)
-        """
-        # Get true samples from parent (without caching, direct environment sampling)
-        next_path_samples, true_losses = super().sample(
-            target_vertex, n_samples, path, path_samples
-        )
-
-        # Generate correlated noise for this edge
-        noise = self._generate_edge_noise(path, target_vertex, n_samples)
-
-        # Add noise to losses
-        noisy_losses = [
-            true_loss + noise_val
-            for true_loss, noise_val in zip(true_losses, noise)
-        ]
-
-        return next_path_samples, noisy_losses
-
     def sample_cached(self, target_vertex, n_samples, path, path_samples):
         """
         Sample with caching using two-level strategy.
