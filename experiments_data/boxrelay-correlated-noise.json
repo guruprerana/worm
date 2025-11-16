@@ -1,0 +1,543 @@
+{
+  "metadata": {
+    "e": 0.1,
+    "total_buckets": 50,
+    "n_samples": 5000,
+    "n_samples_coverage": 5000,
+    "env": "boxrelay",
+    "noise_distribution": "Beta(2, 2)"
+  },
+  "noise_experiments": {
+    "max-10": {
+      "0.0": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          36,
+          0,
+          14
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          166.57157743032815,
+          -Infinity,
+          167.18645109157364
+        ],
+        "max_path_score_quantile": 167.18645109157364,
+        "coverage": 0.9042,
+        "noise_config": {
+          "rho": 0.0,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 10.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      },
+      "0.3": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          36,
+          0,
+          14
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          166.34939853679214,
+          -Infinity,
+          166.6451283430201
+        ],
+        "max_path_score_quantile": 166.6451283430201,
+        "coverage": 0.9026,
+        "noise_config": {
+          "rho": 0.3,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 10.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      },
+      "0.5": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          36,
+          0,
+          14
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          165.8056972701288,
+          -Infinity,
+          166.77969729944712
+        ],
+        "max_path_score_quantile": 166.77969729944712,
+        "coverage": 0.9006,
+        "noise_config": {
+          "rho": 0.5,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 10.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      },
+      "0.7": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          36,
+          0,
+          14
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          165.68416084047377,
+          -Infinity,
+          166.79799637971558
+        ],
+        "max_path_score_quantile": 166.79799637971558,
+        "coverage": 0.9006,
+        "noise_config": {
+          "rho": 0.7,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 10.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      },
+      "0.9": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          35,
+          0,
+          15
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          166.65484185580175,
+          -Infinity,
+          165.30766808221196
+        ],
+        "max_path_score_quantile": 166.65484185580175,
+        "coverage": 0.9004,
+        "noise_config": {
+          "rho": 0.9,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 10.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      }
+    },
+    "max-50": {
+      "0.0": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          35,
+          0,
+          15
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          189.51243394625112,
+          -Infinity,
+          187.30577255821257
+        ],
+        "max_path_score_quantile": 189.51243394625112,
+        "coverage": 0.9012,
+        "noise_config": {
+          "rho": 0.0,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 50.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      },
+      "0.3": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          35,
+          0,
+          15
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          190.12914315712666,
+          -Infinity,
+          188.56186558470435
+        ],
+        "max_path_score_quantile": 190.12914315712666,
+        "coverage": 0.9012,
+        "noise_config": {
+          "rho": 0.3,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 50.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      },
+      "0.5": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          35,
+          0,
+          15
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          190.75813672474422,
+          -Infinity,
+          188.5985343032714
+        ],
+        "max_path_score_quantile": 190.75813672474422,
+        "coverage": 0.903,
+        "noise_config": {
+          "rho": 0.5,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 50.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      },
+      "0.7": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          35,
+          0,
+          15
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          189.94199773629254,
+          -Infinity,
+          189.80120161173264
+        ],
+        "max_path_score_quantile": 189.94199773629254,
+        "coverage": 0.9032,
+        "noise_config": {
+          "rho": 0.7,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 50.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      },
+      "0.9": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          35,
+          0,
+          15
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          190.01902052061052,
+          -Infinity,
+          189.2066070654303
+        ],
+        "max_path_score_quantile": 190.01902052061052,
+        "coverage": 0.9042,
+        "noise_config": {
+          "rho": 0.9,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 50.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      }
+    },
+    "max-100": {
+      "0.0": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          35,
+          0,
+          15
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          223.16431018135398,
+          -Infinity,
+          222.84884361957396
+        ],
+        "max_path_score_quantile": 223.16431018135398,
+        "coverage": 0.9056,
+        "noise_config": {
+          "rho": 0.0,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 100.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      },
+      "0.3": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          34,
+          0,
+          16
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          223.0069963636087,
+          -Infinity,
+          221.920532135899
+        ],
+        "max_path_score_quantile": 223.0069963636087,
+        "coverage": 0.9026,
+        "noise_config": {
+          "rho": 0.3,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 100.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      },
+      "0.5": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          35,
+          0,
+          15
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          222.51322290070107,
+          -Infinity,
+          223.40128984382886
+        ],
+        "max_path_score_quantile": 223.40128984382886,
+        "coverage": 0.9028,
+        "noise_config": {
+          "rho": 0.5,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 100.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      },
+      "0.7": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          34,
+          0,
+          16
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          223.85358846733504,
+          -Infinity,
+          221.97643791801266
+        ],
+        "max_path_score_quantile": 223.85358846733504,
+        "coverage": 0.9052,
+        "noise_config": {
+          "rho": 0.7,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 100.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      },
+      "0.9": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          35,
+          0,
+          15
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          222.72904763447525,
+          -Infinity,
+          223.12898625754679
+        ],
+        "max_path_score_quantile": 223.12898625754679,
+        "coverage": 0.9052,
+        "noise_config": {
+          "rho": 0.9,
+          "beta_alpha": 2.0,
+          "beta_beta": 2.0,
+          "noise_min": 0.0,
+          "noise_max": 100.0,
+          "noise_seed": 42,
+          "noise_type": "beta_correlated_edges"
+        }
+      }
+    }
+  }
+}

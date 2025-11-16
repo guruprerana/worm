@@ -219,14 +219,14 @@ def correlated_noise_experiment():
                 env_kwargs=env_kwargs,
                 eval_env_kwargs=env_kwargs,
                 true_samples_cache_file=true_samples_cache_file,  # SHARED across all configs
-                cache_save_file=noisy_samples_cache_file,  # PER config (for re-runs)
+                # cache_save_file=noisy_samples_cache_file,  # PER config (for re-runs)
             )
 
             # Load the same trained policies
             task_graph_noise.load_path_policies(subfolder=wandb_project_name)
 
             # Run bucketed variance estimation with noise
-            vbs_noise = bucketed_var(task_graph_noise, e, total_buckets, n_samples, quantile_eval="conformal")
+            vbs_noise = bucketed_var(task_graph_noise, e, total_buckets, n_samples, quantile_eval="normal")
             vb_noise = vbs_noise.buckets[(5, total_buckets)]
 
             # Calculate coverage using the noisy task graph
@@ -252,15 +252,15 @@ def correlated_noise_experiment():
 
         data["noise_experiments"][noise_name] = noise_range_data
 
-    # Save results to JSON
-    json_data = json.dumps(data, indent=2)
-    output_file = "experiments_data/boxrelay-correlated-noise.json"
-    with open(output_file, "w") as json_file:
-        json_file.write(json_data)
+        # Save results to JSON
+        json_data = json.dumps(data, indent=2)
+        output_file = "experiments_data/boxrelay-correlated-noise.json"
+        with open(output_file, "w") as json_file:
+            json_file.write(json_data)
 
-    print(f"\n{'='*60}")
-    print(f"Results saved to {output_file}")
-    print(f"{'='*60}")
+        print(f"\n{'='*60}")
+        print(f"Results saved to {output_file}")
+        print(f"{'='*60}")
 
 
 def generate_screenshots():
