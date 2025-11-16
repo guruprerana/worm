@@ -4,7 +4,7 @@ RLAgentGraph subclass that adds controlled positively correlated noise to losses
 The noise is correlated across edges along a path, allowing testing of algorithm
 robustness to correlated disturbances.
 """
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Tuple
 import numpy as np
 from scipy import stats
 
