@@ -63,12 +63,12 @@
         "path_score_quantiles": [
           -Infinity,
           -Infinity,
-          166.45210870525392,
+          166.53355868215687,
           -Infinity,
-          166.5746574678438
+          166.58049387423617
         ],
-        "max_path_score_quantile": 166.5746574678438,
-        "coverage": 0.9024,
+        "max_path_score_quantile": 166.58049387423617,
+        "coverage": 0.9034,
         "noise_config": {
           "rho": 0.3,
           "noise_min": 0.0,
@@ -97,12 +97,12 @@
         "path_score_quantiles": [
           -Infinity,
           -Infinity,
-          166.29203638841378,
+          167.05023357820096,
           -Infinity,
-          166.14278390292884
+          166.70624919531733
         ],
-        "max_path_score_quantile": 166.29203638841378,
-        "coverage": 0.9012,
+        "max_path_score_quantile": 167.05023357820096,
+        "coverage": 0.9032,
         "noise_config": {
           "rho": 0.5,
           "noise_min": 0.0,
@@ -131,12 +131,12 @@
         "path_score_quantiles": [
           -Infinity,
           -Infinity,
-          166.4498592088753,
+          166.84351952271922,
           -Infinity,
-          166.12890090468457
+          167.08837666601823
         ],
-        "max_path_score_quantile": 166.4498592088753,
-        "coverage": 0.9002,
+        "max_path_score_quantile": 167.08837666601823,
+        "coverage": 0.9034,
         "noise_config": {
           "rho": 0.7,
           "noise_min": 0.0,
@@ -165,12 +165,12 @@
         "path_score_quantiles": [
           -Infinity,
           -Infinity,
-          166.45547911271242,
+          166.79989138143617,
           -Infinity,
-          166.13618958136684
+          167.27103823024024
         ],
-        "max_path_score_quantile": 166.45547911271242,
-        "coverage": 0.8996,
+        "max_path_score_quantile": 167.27103823024024,
+        "coverage": 0.9044,
         "noise_config": {
           "rho": 0.9,
           "noise_min": 0.0,
@@ -235,11 +235,11 @@
         "path_score_quantiles": [
           -Infinity,
           -Infinity,
-          189.3299726285976,
+          189.78228679544827,
           -Infinity,
-          190.06061154703315
+          189.3375429573365
         ],
-        "max_path_score_quantile": 190.06061154703315,
+        "max_path_score_quantile": 189.78228679544827,
         "coverage": 0.9032,
         "noise_config": {
           "rho": 0.3,
@@ -262,19 +262,19 @@
         "path_buckets": [
           0,
           0,
-          35,
+          36,
           0,
-          15
+          14
         ],
         "path_score_quantiles": [
           -Infinity,
           -Infinity,
-          189.84615827349637,
+          189.01909181864295,
           -Infinity,
-          187.79720751949282
+          188.32828842196182
         ],
-        "max_path_score_quantile": 189.84615827349637,
-        "coverage": 0.9032,
+        "max_path_score_quantile": 189.01909181864295,
+        "coverage": 0.9006,
         "noise_config": {
           "rho": 0.5,
           "noise_min": 0.0,
@@ -296,19 +296,19 @@
         "path_buckets": [
           0,
           0,
-          37,
+          36,
           0,
-          13
+          14
         ],
         "path_score_quantiles": [
           -Infinity,
           -Infinity,
-          188.87482804292796,
+          188.80845077592977,
           -Infinity,
-          189.9578536352812
+          189.40496439710824
         ],
-        "max_path_score_quantile": 189.9578536352812,
-        "coverage": 0.9006,
+        "max_path_score_quantile": 189.40496439710824,
+        "coverage": 0.9004,
         "noise_config": {
           "rho": 0.7,
           "noise_min": 0.0,
@@ -330,19 +330,19 @@
         "path_buckets": [
           0,
           0,
-          37,
+          36,
           0,
-          13
+          14
         ],
         "path_score_quantiles": [
           -Infinity,
           -Infinity,
-          190.06811567491224,
+          190.05625138050044,
           -Infinity,
-          190.77799165988827
+          190.57578042219393
         ],
-        "max_path_score_quantile": 190.77799165988827,
-        "coverage": 0.9024,
+        "max_path_score_quantile": 190.57578042219393,
+        "coverage": 0.901,
         "noise_config": {
           "rho": 0.9,
           "noise_min": 0.0,
@@ -398,21 +398,21 @@
           5
         ],
         "path_buckets": [
-          1,
           0,
-          34,
           0,
-          15
+          36,
+          0,
+          14
         ],
         "path_score_quantiles": [
           -Infinity,
           -Infinity,
-          221.7507186152199,
+          219.69045870924185,
           -Infinity,
-          222.21125949890055
+          221.92917314076664
         ],
-        "max_path_score_quantile": 222.21125949890055,
-        "coverage": 0.9048,
+        "max_path_score_quantile": 221.92917314076664,
+        "coverage": 0.8996,
         "noise_config": {
           "rho": 0.3,
           "noise_min": 0.0,
@@ -432,21 +432,21 @@
           5
         ],
         "path_buckets": [
-          1,
           0,
-          34,
+          0,
+          35,
           0,
           15
         ],
         "path_score_quantiles": [
           -Infinity,
           -Infinity,
-          221.23718847896836,
+          220.99633406458986,
           -Infinity,
-          220.79602419881877
+          219.21734555660726
         ],
-        "max_path_score_quantile": 221.23718847896836,
-        "coverage": 0.9042,
+        "max_path_score_quantile": 220.99633406458986,
+        "coverage": 0.9018,
         "noise_config": {
           "rho": 0.5,
           "noise_min": 0.0,
@@ -468,19 +468,19 @@
         "path_buckets": [
           0,
           0,
-          33,
-          1,
-          16
+          35,
+          0,
+          15
         ],
         "path_score_quantiles": [
           -Infinity,
           -Infinity,
-          223.59866471159566,
+          221.64372266108705,
           -Infinity,
-          218.1697623779002
+          219.83214866155612
         ],
-        "max_path_score_quantile": 223.59866471159566,
-        "coverage": 0.904,
+        "max_path_score_quantile": 221.64372266108705,
+        "coverage": 0.8976,
         "noise_config": {
           "rho": 0.7,
           "noise_min": 0.0,
@@ -502,23 +502,367 @@
         "path_buckets": [
           0,
           0,
+          35,
+          0,
+          15
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          224.3368541080759,
+          -Infinity,
+          224.99018584510233
+        ],
+        "max_path_score_quantile": 224.99018584510233,
+        "coverage": 0.901,
+        "noise_config": {
+          "rho": 0.9,
+          "noise_min": 0.0,
+          "noise_max": 100.0,
+          "noise_seed": 42,
+          "noise_type": "uniform_correlated",
+          "description": "noise = 0.9*shared + 0.09999999999999998*individual"
+        }
+      }
+    },
+    "max-200": {
+      "0.0": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
           32,
-          2,
+          0,
+          18
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          310.28145618876886,
+          -Infinity,
+          310.51503577132365
+        ],
+        "max_path_score_quantile": 310.51503577132365,
+        "coverage": 0.9044,
+        "noise_config": {
+          "rho": 0.0,
+          "noise_min": 0.0,
+          "noise_max": 200.0,
+          "noise_seed": 42,
+          "noise_type": "uniform_correlated",
+          "description": "noise = 0.0*shared + 1.0*individual"
+        }
+      },
+      "0.3": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          33,
+          0,
+          17
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          295.52857204201314,
+          -Infinity,
+          295.4648945962907
+        ],
+        "max_path_score_quantile": 295.52857204201314,
+        "coverage": 0.9058,
+        "noise_config": {
+          "rho": 0.3,
+          "noise_min": 0.0,
+          "noise_max": 200.0,
+          "noise_seed": 42,
+          "noise_type": "uniform_correlated",
+          "description": "noise = 0.3*shared + 0.7*individual"
+        }
+      },
+      "0.5": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          34,
+          0,
           16
         ],
         "path_score_quantiles": [
           -Infinity,
           -Infinity,
-          226.6558216992234,
+          291.9600222819647,
           -Infinity,
-          222.05431319671004
+          291.4855432713452
         ],
-        "max_path_score_quantile": 226.6558216992234,
-        "coverage": 0.9016,
+        "max_path_score_quantile": 291.9600222819647,
+        "coverage": 0.9058,
+        "noise_config": {
+          "rho": 0.5,
+          "noise_min": 0.0,
+          "noise_max": 200.0,
+          "noise_seed": 42,
+          "noise_type": "uniform_correlated",
+          "description": "noise = 0.5*shared + 0.5*individual"
+        }
+      },
+      "0.7": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          34,
+          0,
+          16
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          293.9207927386507,
+          -Infinity,
+          294.1531265609185
+        ],
+        "max_path_score_quantile": 294.1531265609185,
+        "coverage": 0.902,
+        "noise_config": {
+          "rho": 0.7,
+          "noise_min": 0.0,
+          "noise_max": 200.0,
+          "noise_seed": 42,
+          "noise_type": "uniform_correlated",
+          "description": "noise = 0.7*shared + 0.30000000000000004*individual"
+        }
+      },
+      "0.9": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          33,
+          0,
+          17
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          303.3567262552914,
+          -Infinity,
+          302.9911223481372
+        ],
+        "max_path_score_quantile": 303.3567262552914,
+        "coverage": 0.906,
         "noise_config": {
           "rho": 0.9,
           "noise_min": 0.0,
-          "noise_max": 100.0,
+          "noise_max": 200.0,
+          "noise_seed": 42,
+          "noise_type": "uniform_correlated",
+          "description": "noise = 0.9*shared + 0.09999999999999998*individual"
+        }
+      }
+    },
+    "max-400": {
+      "0.0": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          30,
+          0,
+          20
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          490.4620838243897,
+          -Infinity,
+          488.9021637048619
+        ],
+        "max_path_score_quantile": 490.4620838243897,
+        "coverage": 0.9054,
+        "noise_config": {
+          "rho": 0.0,
+          "noise_min": 0.0,
+          "noise_max": 400.0,
+          "noise_seed": 42,
+          "noise_type": "uniform_correlated",
+          "description": "noise = 0.0*shared + 1.0*individual"
+        }
+      },
+      "0.3": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          30,
+          0,
+          20
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          456.2981929385143,
+          -Infinity,
+          456.1743732878524
+        ],
+        "max_path_score_quantile": 456.2981929385143,
+        "coverage": 0.9054,
+        "noise_config": {
+          "rho": 0.3,
+          "noise_min": 0.0,
+          "noise_max": 400.0,
+          "noise_seed": 42,
+          "noise_type": "uniform_correlated",
+          "description": "noise = 0.3*shared + 0.7*individual"
+        }
+      },
+      "0.5": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          29,
+          0,
+          21
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          451.659680456272,
+          -Infinity,
+          449.62839454351536
+        ],
+        "max_path_score_quantile": 451.659680456272,
+        "coverage": 0.9074,
+        "noise_config": {
+          "rho": 0.5,
+          "noise_min": 0.0,
+          "noise_max": 400.0,
+          "noise_seed": 42,
+          "noise_type": "uniform_correlated",
+          "description": "noise = 0.5*shared + 0.5*individual"
+        }
+      },
+      "0.7": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          29,
+          0,
+          21
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          455.73535636671926,
+          -Infinity,
+          454.20448240968625
+        ],
+        "max_path_score_quantile": 455.73535636671926,
+        "coverage": 0.9058,
+        "noise_config": {
+          "rho": 0.7,
+          "noise_min": 0.0,
+          "noise_max": 400.0,
+          "noise_seed": 42,
+          "noise_type": "uniform_correlated",
+          "description": "noise = 0.7*shared + 0.30000000000000004*individual"
+        }
+      },
+      "0.9": {
+        "path": [
+          0,
+          1,
+          6,
+          7,
+          8,
+          5
+        ],
+        "path_buckets": [
+          0,
+          0,
+          31,
+          0,
+          19
+        ],
+        "path_score_quantiles": [
+          -Infinity,
+          -Infinity,
+          473.73290003024715,
+          -Infinity,
+          473.7101561306756
+        ],
+        "max_path_score_quantile": 473.73290003024715,
+        "coverage": 0.9108,
+        "noise_config": {
+          "rho": 0.9,
+          "noise_min": 0.0,
+          "noise_max": 400.0,
           "noise_seed": 42,
           "noise_type": "uniform_correlated",
           "description": "noise = 0.9*shared + 0.09999999999999998*individual"

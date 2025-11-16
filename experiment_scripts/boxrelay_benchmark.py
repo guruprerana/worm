@@ -11,7 +11,7 @@ os.environ['MUJOCO_GL'] = 'osmesa'
 
 import json
 import argparse
-from agents.baseline_var_estim import baseline_var_estim
+from agents.baseline_var_estim import baseline_var_estim, baseline_cvar_estim
 from agents.bucketed_var import bucketed_var
 from agents.calculate_coverage import calculate_coverage
 import agents.miniworld
@@ -37,35 +37,49 @@ def risk_min():
     n_samples = 10000
     n_samples_coverage = 10000
     es = [0.2, 0.1, 0.05]
-    total_buckets = [10, 20, 40, 50, 100]
+    total_buckets = [50]
 
     data = dict()
     data["metadata"] = {"es": es, "total_buckets": total_buckets, "scores": "cum-reward", "env": "boxrelay", "n_samples": n_samples}
 
     for e in es:
         e_data = dict()
-        min_path, min_path_scores = baseline_var_estim(task_graph, e, n_samples, quantile_eval="conformal")
+
+        # VaR baseline
+        min_path, min_path_scores = baseline_var_estim(task_graph, e, n_samples)
         all_paths_coverage = calculate_coverage(
-            task_graph, 
-            min_path, 
-            [max(min_path_scores) for _ in range(len(min_path)-1)], 
+            task_graph,
+            min_path,
+            [max(min_path_scores) for _ in range(len(min_path)-1)],
             n_samples_coverage,
         )
+
+        # CVaR baseline
+        cvar_path, cvar_path_scores, cvar_value = baseline_cvar_estim(task_graph, e, n_samples)
+        cvar_coverage = calculate_coverage(
+            task_graph,
+            cvar_path,
+            [max(cvar_path_scores) for _ in range(len(cvar_path)-1)],
+            n_samples_coverage,
+        )
+
         for buckets in total_buckets:
             bucket_data = dict()
-            vbs = bucketed_var(task_graph, e, buckets, n_samples, quantile_eval="conformal")
+            vbs = bucketed_var(task_graph, e, buckets, n_samples)
             vb = vbs.buckets[(5, buckets)]
 
-            bucket_data["bucketed"] = {"path": vb.path, 
-                                    "path_buckets": vb.path_buckets, 
-                                    "path_score_quantiles": vb.path_score_quantiles, 
+            bucket_data["bucketed"] = {"path": vb.path,
+                                    "path_buckets": vb.path_buckets,
+                                    "path_score_quantiles": vb.path_score_quantiles,
                                     "max_path_score_quantile": max(vb.path_score_quantiles)}
             bucket_data["all-paths"] = {"path": min_path, "min_path_scores": min_path_scores, "max_min_path_scores": max(min_path_scores)}
+            bucket_data["cvar-baseline"] = {"path": cvar_path, "cvar_path_scores": cvar_path_scores, "cvar_value": cvar_value, "max_cvar_path_scores": max(cvar_path_scores)}
 
             bucket_data["bucketed-coverage"] = calculate_coverage(
                 task_graph, vb.path, vb.path_score_quantiles, n_samples_coverage
             )
             bucket_data["all-paths-coverage"] = all_paths_coverage
+            bucket_data["cvar-coverage"] = cvar_coverage
             e_data[buckets] = bucket_data
         data[str(e)] = e_data
 
@@ -166,6 +180,8 @@ def correlated_noise_experiment():
         {"noise_min": 0.0, "noise_max": 10.0, "name": "max-10"},
         {"noise_min": 0.0, "noise_max": 50.0, "name": "max-50"},
         {"noise_min": 0.0, "noise_max": 100.0, "name": "max-100"},
+        {"noise_min": 0.0, "noise_max": 200.0, "name": "max-200"},
+        {"noise_min": 0.0, "noise_max": 400.0, "name": "max-400"},
     ]
 
     data = {
