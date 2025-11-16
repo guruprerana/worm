@@ -22,7 +22,7 @@ import argparse
 import numpy as np
 from agents.gaussian_noise_agent_graph import GaussianNoiseAgentGraph
 from agents.bucketed_var import bucketed_var
-from agents.baseline_var_estim import baseline_var_estim
+from agents.baseline_var_estim import baseline_var_estim, baseline_cvar_estim
 from agents.calculate_coverage import calculate_coverage
 
 
@@ -49,11 +49,11 @@ def correlation_path_length_experiment():
     n_samples = 5000
     n_samples_coverage = 10000
     e = 0.1
-    total_buckets = 50
+    total_buckets = 200
 
     # Varying parameters
     rho_values = [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 0.95, 0.99]
-    graph_lengths = [3, 5, 10, 15, 20, 30]
+    graph_lengths = [5, 15, 30]
 
     data = {
         "metadata": {
@@ -102,6 +102,12 @@ def correlation_path_length_experiment():
             budgets = vb.path_score_quantiles
             risk_bound = max(vb.path_score_quantiles)
 
+            # Compute bucketed CVaR: average of risk bounds across all bucket levels
+            bucketed_cvar = np.mean([
+                max(vbs.buckets[(final_vertex, b)].path_score_quantiles)
+                for b in range(1, total_buckets + 1)
+            ])
+
             # Calculate coverage
             coverage = calculate_coverage(
                 graph,
@@ -119,18 +125,41 @@ def correlation_path_length_experiment():
                 n_samples_coverage,
             )
 
+            # Compute baseline CVaR
+            baseline_cvar_path, baseline_cvar_scores, baseline_cvar = baseline_cvar_estim(
+                graph, e, n_samples
+            )
+            baseline_cvar_coverage = calculate_coverage(
+                graph,
+                baseline_cvar_path,
+                [max(baseline_cvar_scores)] * (graph_length - 1),
+                n_samples_coverage,
+            )
+
+            # Calculate CVaR error metrics
+            cvar_absolute_error = baseline_cvar - bucketed_cvar
+            cvar_relative_error = (baseline_cvar - bucketed_cvar) / baseline_cvar if baseline_cvar != 0 else 0.0
+
             length_data[str(rho)] = {
                 "risk_bound": risk_bound,
+                "bucketed_cvar": bucketed_cvar,
                 "budgets": budgets,
                 "coverage": coverage,
                 "baseline_risk_bound": max(baseline_scores),
                 "baseline_coverage": baseline_coverage,
-                "improvement": max(baseline_scores) - risk_bound,
+                "baseline_cvar": baseline_cvar,
+                "baseline_cvar_coverage": baseline_cvar_coverage,
+                "error": max(baseline_scores) - risk_bound,
+                "cvar_absolute_error": cvar_absolute_error,
+                "cvar_relative_error": cvar_relative_error,
             }
 
             print(f"    Bucketed risk bound: {risk_bound:.4f}")
+            print(f"    Bucketed CVaR: {bucketed_cvar:.4f}")
             print(f"    Baseline risk bound: {max(baseline_scores):.4f}")
-            print(f"    Improvement: {max(baseline_scores) - risk_bound:.4f}")
+            print(f"    Baseline CVaR: {baseline_cvar:.4f}")
+            print(f"    Error: {max(baseline_scores) - risk_bound:.4f}")
+            print(f"    CVaR error: {cvar_absolute_error:.4f} ({cvar_relative_error*100:.2f}%)")
             print(f"    Coverage: {coverage:.4f}")
 
         data["results"][str(graph_length)] = length_data
