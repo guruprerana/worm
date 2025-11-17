@@ -130,21 +130,27 @@ def create_bar_chart(data):
 
     # Create bars for each benchmark using matplotlib default colors
     bars = []
+    actual_values = []  # Store actual values for labels
     for i, benchmark in enumerate(benchmarks):
         if benchmark not in data:
             print(f"Warning: {benchmark} not in data, skipping")
             continue
 
         values = []
+        actual_vals = []
         for risk_level in risk_levels:
             diff = data[benchmark]['differences'].get(risk_level)
-            # Use 0 for None values (will be visible as no bar)
-            values.append(diff if diff is not None else 0.0)
+            actual_val = diff if diff is not None else 0.0
+            actual_vals.append(actual_val)
+            # Use tiny bar (0.03) for zero values to make them visible
+            display_val = 0.03 if actual_val == 0.0 else actual_val
+            values.append(display_val)
 
         bar = ax.bar(x + i * width, values, width,
                     label=data[benchmark]['label'], alpha=0.85,
                     edgecolor='black', linewidth=0.5)
         bars.append(bar)
+        actual_values.append(actual_vals)
 
     # Customize the plot
     ax.set_xlabel('Risk Levels')
@@ -155,15 +161,16 @@ def create_bar_chart(data):
     ax.grid(True, alpha=0.3)
 
     # Add value labels on bars
-    for bar_group in bars:
-        for bar in bar_group:
+    for i, bar_group in enumerate(bars):
+        for j, bar in enumerate(bar_group):
             height = bar.get_height()
-            if height > 0:  # Only show label if there's a value
-                ax.annotate(f'{height:.2f}',
-                           xy=(bar.get_x() + bar.get_width() / 2, height),
-                           xytext=(0, 3),  # 3 points vertical offset
-                           textcoords="offset points",
-                           ha='center', va='bottom', fontsize=12)
+            actual_val = actual_values[i][j]
+            # Show label with actual value (not display value)
+            ax.annotate(f'{actual_val:.2f}',
+                       xy=(bar.get_x() + bar.get_width() / 2, height),
+                       xytext=(0, 3),  # 3 points vertical offset
+                       textcoords="offset points",
+                       ha='center', va='bottom', fontsize=12)
 
     plt.tight_layout()
     return fig
