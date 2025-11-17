@@ -6,10 +6,7 @@
       0.05
     ],
     "total_buckets": [
-      5,
-      10,
-      15,
-      20
+      5
     ],
     "scores": "cum-reward",
     "env": "9-rooms",
@@ -21,129 +18,48 @@
       "bucketed": {
         "path": [
           0,
-          2,
+          1,
           3
         ],
         "path_buckets": [
-          5,
-          0
+          0,
+          5
         ],
         "path_score_quantiles": [
-          -0.33939553912153725,
-          -8.738183972030173
+          -0.17174973301806762,
+          17.635075555931472
         ],
-        "max_path_score_quantile": -0.33939553912153725
+        "max_path_score_quantile": 17.635075555931472,
+        "bucketed_cvar": 17.646941630870476
       },
       "all-paths": {
         "path": [
           0,
-          2,
+          1,
           3
         ],
         "min_path_scores": [
-          -0.33939553912153725,
-          -9.619738676073444
+          -0.27133136408702263,
+          17.635075555931472
         ],
-        "max_min_path_scores": -0.33939553912153725
+        "max_min_path_scores": 17.635075555931472
       },
-      "bucketed-coverage": 0.7956,
-      "all-paths-coverage": 0.7956
-    },
-    "10": {
-      "bucketed": {
+      "cvar-baseline": {
         "path": [
           0,
-          2,
+          1,
           3
         ],
-        "path_buckets": [
-          10,
-          0
-        ],
-        "path_score_quantiles": [
-          -0.33939553912153725,
-          -8.738183972030173
-        ],
-        "max_path_score_quantile": -0.33939553912153725
+        "cvar_value": 17.649118795993054
       },
-      "all-paths": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "min_path_scores": [
-          -0.33939553912153725,
-          -9.619738676073444
-        ],
-        "max_min_path_scores": -0.33939553912153725
+      "cvar-error": {
+        "cvar_absolute_error": 0.002177165122578373,
+        "cvar_relative_error": 0.00012335829044749037
       },
-      "bucketed-coverage": 0.7956,
-      "all-paths-coverage": 0.7956
-    },
-    "15": {
-      "bucketed": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "path_buckets": [
-          15,
-          0
-        ],
-        "path_score_quantiles": [
-          -0.33939553912153725,
-          -8.738183972030173
-        ],
-        "max_path_score_quantile": -0.33939553912153725
-      },
-      "all-paths": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "min_path_scores": [
-          -0.33939553912153725,
-          -9.619738676073444
-        ],
-        "max_min_path_scores": -0.33939553912153725
-      },
-      "bucketed-coverage": 0.7956,
-      "all-paths-coverage": 0.7956
-    },
-    "20": {
-      "bucketed": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "path_buckets": [
-          20,
-          0
-        ],
-        "path_score_quantiles": [
-          -0.33939553912153725,
-          -8.738183972030173
-        ],
-        "max_path_score_quantile": -0.33939553912153725
-      },
-      "all-paths": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "min_path_scores": [
-          -0.33939553912153725,
-          -9.619738676073444
-        ],
-        "max_min_path_scores": -0.33939553912153725
-      },
-      "bucketed-coverage": 0.7956,
-      "all-paths-coverage": 0.7956
+      "bucketed-coverage": 0.8015,
+      "bucketed-cvar-coverage": 0.8456,
+      "all-paths-coverage": 0.8018,
+      "cvar-coverage": 0.883
     }
   },
   "0.1": {
@@ -151,129 +67,48 @@
       "bucketed": {
         "path": [
           0,
-          2,
+          1,
           3
         ],
         "path_buckets": [
-          5,
-          0
+          0,
+          5
         ],
         "path_score_quantiles": [
-          -0.3304256934214988,
-          -8.738183972030173
+          -0.17174973301806762,
+          17.649722577615393
         ],
-        "max_path_score_quantile": -0.3304256934214988
+        "max_path_score_quantile": 17.649722577615393,
+        "bucketed_cvar": 17.652169671626954
       },
       "all-paths": {
         "path": [
           0,
-          2,
+          1,
           3
         ],
         "min_path_scores": [
-          -0.3304256934214988,
-          -8.770691896905637
+          -0.2859990529056805,
+          17.649722577615393
         ],
-        "max_min_path_scores": -0.3304256934214988
+        "max_min_path_scores": 17.649722577615393
       },
-      "bucketed-coverage": 0.8977,
-      "all-paths-coverage": 0.8977
-    },
-    "10": {
-      "bucketed": {
+      "cvar-baseline": {
         "path": [
           0,
-          2,
+          1,
           3
         ],
-        "path_buckets": [
-          10,
-          0
-        ],
-        "path_score_quantiles": [
-          -0.3304256934214988,
-          -8.738183972030173
-        ],
-        "max_path_score_quantile": -0.3304256934214988
+        "cvar_value": 17.65270423888254
       },
-      "all-paths": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "min_path_scores": [
-          -0.3304256934214988,
-          -8.770691896905637
-        ],
-        "max_min_path_scores": -0.3304256934214988
+      "cvar-error": {
+        "cvar_absolute_error": 0.0005345672555847614,
+        "cvar_relative_error": 3.028245691712789e-05
       },
-      "bucketed-coverage": 0.8977,
-      "all-paths-coverage": 0.8977
-    },
-    "15": {
-      "bucketed": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "path_buckets": [
-          15,
-          0
-        ],
-        "path_score_quantiles": [
-          -0.3304256934214988,
-          -8.738183972030173
-        ],
-        "max_path_score_quantile": -0.3304256934214988
-      },
-      "all-paths": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "min_path_scores": [
-          -0.3304256934214988,
-          -8.770691896905637
-        ],
-        "max_min_path_scores": -0.3304256934214988
-      },
-      "bucketed-coverage": 0.8977,
-      "all-paths-coverage": 0.8977
-    },
-    "20": {
-      "bucketed": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "path_buckets": [
-          20,
-          0
-        ],
-        "path_score_quantiles": [
-          -0.3304256934214988,
-          -8.738183972030173
-        ],
-        "max_path_score_quantile": -0.3304256934214988
-      },
-      "all-paths": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "min_path_scores": [
-          -0.3304256934214988,
-          -8.770691896905637
-        ],
-        "max_min_path_scores": -0.3304256934214988
-      },
-      "bucketed-coverage": 0.8977,
-      "all-paths-coverage": 0.8977
+      "bucketed-coverage": 0.8979,
+      "bucketed-cvar-coverage": 0.9353,
+      "all-paths-coverage": 0.8982,
+      "cvar-coverage": 0.9472
     }
   },
   "0.05": {
@@ -281,129 +116,48 @@
       "bucketed": {
         "path": [
           0,
-          2,
+          1,
           3
         ],
         "path_buckets": [
-          5,
-          0
+          0,
+          5
         ],
         "path_score_quantiles": [
-          -0.3279182040113406,
-          -8.738183972030173
+          -0.17174973301806762,
+          17.653406427174815
         ],
-        "max_path_score_quantile": -0.3279182040113406
+        "max_path_score_quantile": 17.653406427174815,
+        "bucketed_cvar": 17.653882169289687
       },
       "all-paths": {
         "path": [
           0,
-          2,
+          1,
           3
         ],
         "min_path_scores": [
-          -0.3279182040113406,
-          -9.293826790885658
+          -0.27389303786789865,
+          17.653406427174815
         ],
-        "max_min_path_scores": -0.3279182040113406
+        "max_min_path_scores": 17.653406427174815
       },
-      "bucketed-coverage": 0.9501,
-      "all-paths-coverage": 0.9501
-    },
-    "10": {
-      "bucketed": {
+      "cvar-baseline": {
         "path": [
           0,
-          2,
+          1,
           3
         ],
-        "path_buckets": [
-          10,
-          0
-        ],
-        "path_score_quantiles": [
-          -0.3279182040113406,
-          -8.738183972030173
-        ],
-        "max_path_score_quantile": -0.3279182040113406
+        "cvar_value": 17.65397093698928
       },
-      "all-paths": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "min_path_scores": [
-          -0.3279182040113406,
-          -9.293826790885658
-        ],
-        "max_min_path_scores": -0.3279182040113406
+      "cvar-error": {
+        "cvar_absolute_error": 8.876769959087483e-05,
+        "cvar_relative_error": 5.028200165713728e-06
       },
-      "bucketed-coverage": 0.9501,
-      "all-paths-coverage": 0.9501
-    },
-    "15": {
-      "bucketed": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "path_buckets": [
-          15,
-          0
-        ],
-        "path_score_quantiles": [
-          -0.3279182040113406,
-          -8.738183972030173
-        ],
-        "max_path_score_quantile": -0.3279182040113406
-      },
-      "all-paths": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "min_path_scores": [
-          -0.3279182040113406,
-          -9.293826790885658
-        ],
-        "max_min_path_scores": -0.3279182040113406
-      },
-      "bucketed-coverage": 0.9501,
-      "all-paths-coverage": 0.9501
-    },
-    "20": {
-      "bucketed": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "path_buckets": [
-          20,
-          0
-        ],
-        "path_score_quantiles": [
-          -0.3279182040113406,
-          -8.738183972030173
-        ],
-        "max_path_score_quantile": -0.3279182040113406
-      },
-      "all-paths": {
-        "path": [
-          0,
-          2,
-          3
-        ],
-        "min_path_scores": [
-          -0.3279182040113406,
-          -9.293826790885658
-        ],
-        "max_min_path_scores": -0.3279182040113406
-      },
-      "bucketed-coverage": 0.9501,
-      "all-paths-coverage": 0.9501
+      "bucketed-coverage": 0.9523,
+      "bucketed-cvar-coverage": 0.9674,
+      "all-paths-coverage": 0.9526,
+      "cvar-coverage": 0.9699
     }
   }
 }

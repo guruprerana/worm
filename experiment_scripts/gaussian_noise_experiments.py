@@ -116,6 +116,14 @@ def correlation_path_length_experiment():
                 n_samples_coverage,
             )
 
+            # Calculate bucketed CVaR coverage
+            bucketed_cvar_coverage = calculate_coverage(
+                graph,
+                selected_path,
+                [bucketed_cvar for _ in range(len(selected_path)-1)],
+                n_samples_coverage,
+            )
+
             # Also compute baseline for comparison
             baseline_path, baseline_scores = baseline_var_estim(graph, e, n_samples)
             baseline_coverage = calculate_coverage(
@@ -126,13 +134,13 @@ def correlation_path_length_experiment():
             )
 
             # Compute baseline CVaR
-            baseline_cvar_path, baseline_cvar_scores, baseline_cvar = baseline_cvar_estim(
+            baseline_cvar_path, _, baseline_cvar = baseline_cvar_estim(
                 graph, e, n_samples
             )
             baseline_cvar_coverage = calculate_coverage(
                 graph,
                 baseline_cvar_path,
-                [max(baseline_cvar_scores)] * (graph_length - 1),
+                [baseline_cvar] * (graph_length - 1),
                 n_samples_coverage,
             )
 
@@ -145,6 +153,7 @@ def correlation_path_length_experiment():
                 "bucketed_cvar": bucketed_cvar,
                 "budgets": budgets,
                 "coverage": coverage,
+                "bucketed_cvar_coverage": bucketed_cvar_coverage,
                 "baseline_risk_bound": max(baseline_scores),
                 "baseline_coverage": baseline_coverage,
                 "baseline_cvar": baseline_cvar,

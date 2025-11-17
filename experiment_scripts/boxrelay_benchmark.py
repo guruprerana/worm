@@ -55,11 +55,11 @@ def risk_min():
         )
 
         # CVaR baseline
-        cvar_path, cvar_path_scores, cvar_value = baseline_cvar_estim(task_graph, e, n_samples)
+        cvar_path, _, cvar_value = baseline_cvar_estim(task_graph, e, n_samples)
         cvar_coverage = calculate_coverage(
             task_graph,
             cvar_path,
-            [max(cvar_path_scores) for _ in range(len(cvar_path)-1)],
+            [cvar_value for _ in range(len(cvar_path)-1)],
             n_samples_coverage,
         )
 
@@ -68,15 +68,31 @@ def risk_min():
             vbs = bucketed_var(task_graph, e, buckets, n_samples)
             vb = vbs.buckets[(5, buckets)]
 
+            # Compute bucketed CVaR: average of risk bounds across all bucket levels
+            final_vertex = 5
+            bucketed_cvar = np.mean([
+                max(vbs.buckets[(final_vertex, b)].path_score_quantiles)
+                for b in range(1, buckets + 1)
+            ])
+
+            # Calculate CVaR error metrics
+            cvar_absolute_error = cvar_value - bucketed_cvar
+            cvar_relative_error = (cvar_value - bucketed_cvar) / cvar_value if cvar_value != 0 else 0.0
+
             bucket_data["bucketed"] = {"path": vb.path,
                                     "path_buckets": vb.path_buckets,
                                     "path_score_quantiles": vb.path_score_quantiles,
-                                    "max_path_score_quantile": max(vb.path_score_quantiles)}
+                                    "max_path_score_quantile": max(vb.path_score_quantiles),
+                                    "bucketed_cvar": bucketed_cvar}
             bucket_data["all-paths"] = {"path": min_path, "min_path_scores": min_path_scores, "max_min_path_scores": max(min_path_scores)}
-            bucket_data["cvar-baseline"] = {"path": cvar_path, "cvar_path_scores": cvar_path_scores, "cvar_value": cvar_value, "max_cvar_path_scores": max(cvar_path_scores)}
+            bucket_data["cvar-baseline"] = {"path": cvar_path, "cvar_value": cvar_value}
+            bucket_data["cvar-error"] = {"cvar_absolute_error": cvar_absolute_error, "cvar_relative_error": cvar_relative_error}
 
             bucket_data["bucketed-coverage"] = calculate_coverage(
                 task_graph, vb.path, vb.path_score_quantiles, n_samples_coverage
+            )
+            bucket_data["bucketed-cvar-coverage"] = calculate_coverage(
+                task_graph, vb.path, [bucketed_cvar for _ in range(len(vb.path)-1)], n_samples_coverage
             )
             bucket_data["all-paths-coverage"] = all_paths_coverage
             bucket_data["cvar-coverage"] = cvar_coverage
