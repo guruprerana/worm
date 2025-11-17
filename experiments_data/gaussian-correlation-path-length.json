@@ -35,10 +35,11 @@
           3.981029186494406
         ],
         "coverage": 0.9118,
+        "bucketed_cvar_coverage": 0.965,
         "baseline_risk_bound": 3.945358839187373,
         "baseline_coverage": 0.9083,
         "baseline_cvar": 4.694943071624709,
-        "baseline_cvar_coverage": 0.9083,
+        "baseline_cvar_coverage": 0.9642,
         "error": -0.037281928438345435,
         "cvar_absolute_error": -0.023032480749835216,
         "cvar_relative_error": -0.0049058061830480745
@@ -53,10 +54,11 @@
           3.9520206628582084
         ],
         "coverage": 0.9113,
+        "bucketed_cvar_coverage": 0.9659,
         "baseline_risk_bound": 3.929309847150626,
         "baseline_coverage": 0.908,
         "baseline_cvar": 4.700384466250403,
-        "baseline_cvar_coverage": 0.908,
+        "baseline_cvar_coverage": 0.9644,
         "error": -0.04178488262500579,
         "cvar_absolute_error": -0.03043764954637318,
         "cvar_relative_error": -0.006475565938259076
@@ -71,10 +73,11 @@
           3.996513084307942
         ],
         "coverage": 0.9124,
+        "bucketed_cvar_coverage": 0.9668,
         "baseline_risk_bound": 3.931456333278731,
         "baseline_coverage": 0.9066,
         "baseline_cvar": 4.699249654173209,
-        "baseline_cvar_coverage": 0.9066,
+        "baseline_cvar_coverage": 0.9651,
         "error": -0.06505675102921105,
         "cvar_absolute_error": -0.03921863944221027,
         "cvar_relative_error": -0.008345723749190856
@@ -89,10 +92,11 @@
           3.950620888853732
         ],
         "coverage": 0.9159,
+        "bucketed_cvar_coverage": 0.9654,
         "baseline_risk_bound": 3.864320483641441,
         "baseline_coverage": 0.9071,
         "baseline_cvar": 4.6708851466166506,
-        "baseline_cvar_coverage": 0.9071,
+        "baseline_cvar_coverage": 0.9629,
         "error": -0.09137022857997756,
         "cvar_absolute_error": -0.06599857750765814,
         "cvar_relative_error": -0.014129779567683038
@@ -107,10 +111,11 @@
           3.930926938368347
         ],
         "coverage": 0.9243,
+        "bucketed_cvar_coverage": 0.9676,
         "baseline_risk_bound": 3.71113778410719,
         "baseline_coverage": 0.9039,
         "baseline_cvar": 4.576263472441949,
-        "baseline_cvar_coverage": 0.9039,
+        "baseline_cvar_coverage": 0.9605,
         "error": -0.24217871672386249,
         "cvar_absolute_error": -0.15177720691968943,
         "cvar_relative_error": -0.03316618630760333
@@ -125,10 +130,11 @@
           3.9045586722836623
         ],
         "coverage": 0.9423,
+        "bucketed_cvar_coverage": 0.9754,
         "baseline_risk_bound": 3.3720711344118417,
         "baseline_coverage": 0.9027,
         "baseline_cvar": 4.249026364953206,
-        "baseline_cvar_coverage": 0.9027,
+        "baseline_cvar_coverage": 0.9609,
         "error": -0.5327870554243699,
         "cvar_absolute_error": -0.4457143175091067,
         "cvar_relative_error": -0.1048979882039436
@@ -143,10 +149,11 @@
           3.899673034870065
         ],
         "coverage": 0.9525,
+        "bucketed_cvar_coverage": 0.9785,
         "baseline_risk_bound": 3.156621871956667,
         "baseline_coverage": 0.9005,
         "baseline_cvar": 4.065115223475093,
-        "baseline_cvar_coverage": 0.9005,
+        "baseline_cvar_coverage": 0.9604,
         "error": -0.7535506341940938,
         "cvar_absolute_error": -0.614559979946919,
         "cvar_relative_error": -0.15117898169232163
@@ -161,10 +168,11 @@
           3.899128138067005
         ],
         "coverage": 0.9643,
+        "bucketed_cvar_coverage": 0.9858,
         "baseline_risk_bound": 2.8376442156846866,
         "baseline_coverage": 0.9001,
         "baseline_cvar": 3.776970426574113,
-        "baseline_cvar_coverage": 0.9001,
+        "baseline_cvar_coverage": 0.96,
         "error": -1.065807239794415,
         "cvar_absolute_error": -0.8937763948636666,
         "cvar_relative_error": -0.23663844137492046
@@ -191,10 +199,11 @@
           4.843130066883389
         ],
         "coverage": 0.9043,
+        "bucketed_cvar_coverage": 0.9662,
         "baseline_risk_bound": 4.8185724144732776,
         "baseline_coverage": 0.9008,
         "baseline_cvar": 5.469233377594039,
-        "baseline_cvar_coverage": 0.9008,
+        "baseline_cvar_coverage": 0.9609,
         "error": -0.034093013762364954,
         "cvar_absolute_error": -0.07323990192636387,
         "cvar_relative_error": -0.013391255569090876
@@ -219,10 +228,11 @@
           4.8409395760370675
         ],
         "coverage": 0.9036,
+        "bucketed_cvar_coverage": 0.9669,
         "baseline_risk_bound": 4.802938444908102,
         "baseline_coverage": 0.8991,
         "baseline_cvar": 5.470944039512431,
-        "baseline_cvar_coverage": 0.8991,
+        "baseline_cvar_coverage": 0.9622,
         "error": -0.05364637664844363,
         "cvar_absolute_error": -0.08441870469869173,
         "cvar_relative_error": -0.015430372544299522
@@ -247,10 +257,11 @@
           4.856277311793066
         ],
         "coverage": 0.9083,
+        "bucketed_cvar_coverage": 0.9678,
         "baseline_risk_bound": 4.804573541122747,
         "baseline_coverage": 0.9023,
         "baseline_cvar": 5.4660332322926015,
-        "baseline_cvar_coverage": 0.9023,
+        "baseline_cvar_coverage": 0.9628,
         "error": -0.06315285625933686,
         "cvar_absolute_error": -0.10035108408905558,
         "cvar_relative_error": -0.018359032926509603
@@ -275,10 +286,11 @@
           4.891108663615284
         ],
         "coverage": 0.9188,
+        "bucketed_cvar_coverage": 0.9687,
         "baseline_risk_bound": 4.716485510652243,
         "baseline_coverage": 0.9019,
         "baseline_cvar": 5.43739274300197,
-        "baseline_cvar_coverage": 0.9019,
+        "baseline_cvar_coverage": 0.9614,
         "error": -0.18801078582982989,
         "cvar_absolute_error": -0.15175651280449642,
         "cvar_relative_error": -0.02790979426671174
@@ -303,10 +315,11 @@
           4.867673070037372
         ],
         "coverage": 0.9372,
+        "bucketed_cvar_coverage": 0.9745,
         "baseline_risk_bound": 4.513775828796247,
         "baseline_coverage": 0.901,
         "baseline_cvar": 5.282567731622922,
-        "baseline_cvar_coverage": 0.901,
+        "baseline_cvar_coverage": 0.9603,
         "error": -0.392320166081948,
         "cvar_absolute_error": -0.33165816489935374,
         "cvar_relative_error": -0.062783513955525
@@ -331,10 +344,11 @@
           4.838094798885267
         ],
         "coverage": 0.9646,
+        "bucketed_cvar_coverage": 0.9875,
         "baseline_risk_bound": 3.81915913990791,
         "baseline_coverage": 0.8967,
         "baseline_cvar": 4.748866332536429,
-        "baseline_cvar_coverage": 0.8967,
+        "baseline_cvar_coverage": 0.9588,
         "error": -1.0838127800533002,
         "cvar_absolute_error": -0.9036709111274321,
         "cvar_relative_error": -0.1902919239768895
@@ -359,10 +373,11 @@
           4.890498896492692
         ],
         "coverage": 0.9747,
+        "bucketed_cvar_coverage": 0.9907,
         "baseline_risk_bound": 3.49701529707386,
         "baseline_coverage": 0.8984,
         "baseline_cvar": 4.444163984675771,
-        "baseline_cvar_coverage": 0.8984,
+        "baseline_cvar_coverage": 0.9592,
         "error": -1.412881863658658,
         "cvar_absolute_error": -1.2116268334334368,
         "cvar_relative_error": -0.2726332416200957
@@ -387,10 +402,11 @@
           4.868441532426651
         ],
         "coverage": 0.9863,
+        "bucketed_cvar_coverage": 0.9954,
         "baseline_risk_bound": 3.0110866182902742,
         "baseline_coverage": 0.8982,
         "baseline_cvar": 3.9576838002510244,
-        "baseline_cvar_coverage": 0.8982,
+        "baseline_cvar_coverage": 0.9593,
         "error": -1.8862589515812105,
         "cvar_absolute_error": -1.717493088733407,
         "cvar_relative_error": -0.4339642011381686
@@ -432,10 +448,11 @@
           5.140936329387641
         ],
         "coverage": 0.9009,
+        "bucketed_cvar_coverage": 0.9699,
         "baseline_risk_bound": 5.320772845881397,
         "baseline_coverage": 0.9,
         "baseline_cvar": 5.9338723249598315,
-        "baseline_cvar_coverage": 0.9,
+        "baseline_cvar_coverage": 0.9629,
         "error": -0.05512137435809006,
         "cvar_absolute_error": -0.12458018325075049,
         "cvar_relative_error": -0.020994752908101003
@@ -475,10 +492,11 @@
           5.395486781295009
         ],
         "coverage": 0.9048,
+        "bucketed_cvar_coverage": 0.9688,
         "baseline_risk_bound": 5.328271988468361,
         "baseline_coverage": 0.9015,
         "baseline_cvar": 5.9310551957897815,
-        "baseline_cvar_coverage": 0.9015,
+        "baseline_cvar_coverage": 0.9617,
         "error": -0.0679538864016509,
         "cvar_absolute_error": -0.12956951802089822,
         "cvar_relative_error": -0.02184594709435084
@@ -518,10 +536,11 @@
           5.404807787101474
         ],
         "coverage": 0.9078,
+        "bucketed_cvar_coverage": 0.97,
         "baseline_risk_bound": 5.292399745154164,
         "baseline_coverage": 0.9017,
         "baseline_cvar": 5.917309314226088,
-        "baseline_cvar_coverage": 0.9017,
+        "baseline_cvar_coverage": 0.9617,
         "error": -0.11240804194730991,
         "cvar_absolute_error": -0.15190169253066887,
         "cvar_relative_error": -0.025670737232795098
@@ -561,10 +580,11 @@
           5.375485459789185
         ],
         "coverage": 0.9209,
+        "bucketed_cvar_coverage": 0.9715,
         "baseline_risk_bound": 5.170071466626879,
         "baseline_coverage": 0.8992,
         "baseline_cvar": 5.863551619176198,
-        "baseline_cvar_coverage": 0.8992,
+        "baseline_cvar_coverage": 0.9598,
         "error": -0.24934453945865265,
         "cvar_absolute_error": -0.2254533069586957,
         "cvar_relative_error": -0.0384499568864324
@@ -604,10 +624,11 @@
           5.417049781239633
         ],
         "coverage": 0.9415,
+        "bucketed_cvar_coverage": 0.9794,
         "baseline_risk_bound": 4.881714528796246,
         "baseline_coverage": 0.8988,
         "baseline_cvar": 5.651400756069776,
-        "baseline_cvar_coverage": 0.8988,
+        "baseline_cvar_coverage": 0.9583,
         "error": -0.5458471426669034,
         "cvar_absolute_error": -0.47331243201557616,
         "cvar_relative_error": -0.08375134810732086
@@ -647,10 +668,11 @@
           5.382049356617779
         ],
         "coverage": 0.9745,
+        "bucketed_cvar_coverage": 0.9917,
         "baseline_risk_bound": 4.111807567899307,
         "baseline_coverage": 0.8988,
         "baseline_cvar": 5.00627303658312,
-        "baseline_cvar_coverage": 0.8988,
+        "baseline_cvar_coverage": 0.9584,
         "error": -1.310559386471959,
         "cvar_absolute_error": -1.2121507397654074,
         "cvar_relative_error": -0.24212637443217125
@@ -690,10 +712,11 @@
           5.378216747320573
         ],
         "coverage": 0.9844,
+        "bucketed_cvar_coverage": 0.995,
         "baseline_risk_bound": 3.7226136448002745,
         "baseline_coverage": 0.8986,
         "baseline_cvar": 4.633289861338622,
-        "baseline_cvar_coverage": 0.8986,
+        "baseline_cvar_coverage": 0.9591,
         "error": -1.7458612411072414,
         "cvar_absolute_error": -1.621093266850382,
         "cvar_relative_error": -0.34987952736935507
@@ -733,10 +756,11 @@
           5.423028693381169
         ],
         "coverage": 0.9921,
+        "bucketed_cvar_coverage": 0.998,
         "baseline_risk_bound": 3.0830704902571306,
         "baseline_coverage": 0.8978,
         "baseline_cvar": 4.044825919404872,
-        "baseline_cvar_coverage": 0.8978,
+        "baseline_cvar_coverage": 0.9595,
         "error": -2.4076900509335863,
         "cvar_absolute_error": -2.237540172271764,
         "cvar_relative_error": -0.5531857777950999
