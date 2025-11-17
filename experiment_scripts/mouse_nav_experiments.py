@@ -36,7 +36,7 @@ with open("experiments_data/mousenav-policies/cum-rew-score-graph.pkl", "rb") as
 n_samples = 10000
 n_samples_coverage = 10000
 es = [0.2, 0.1, 0.05]
-total_buckets = [5]
+total_buckets = [30]
 
 data_cum_reward = dict()
 data_cum_reward["metadata"] = {"es": es, "total_buckets": total_buckets, "scores": "cum-reward", "env": "9-rooms", "spec": spec_num, "n_samples": n_samples}
